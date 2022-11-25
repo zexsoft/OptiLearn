@@ -87,6 +87,23 @@
 					</Grid>
 				</Grid>
 			</TabItem>
+			<TabItem Header="Projects">
+				<Grid>
+					<Expander IsExpanded="False" HorizontalAlignment="Right">
+					<Expander.Header >
+						<Label>
+							<TextBlock>Proiect Chimie</TextBlock>
+						</Label>
+					</Expander.Header>
+						<StackPanel>
+								<CheckBox>Bom alex are mere si pere si se duce la rafael si ii mananca pruna lui lupse</CheckBox>
+								<CheckBox>POC</CheckBox>
+								<CheckBox>Hop</CheckBox>
+						</StackPanel>
+
+					</Expander>
+				</Grid>
+			</TabItem>
 	    </TabControl>
 	</Grid>
 </Window>
