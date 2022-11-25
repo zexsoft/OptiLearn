@@ -12,6 +12,9 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+	<TabControl>
+		<TabItem Header="">
+			
+		</TabItem>
+	</TabControl>
 </Window>
