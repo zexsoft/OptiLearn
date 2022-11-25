@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="OptiLearn.Views.MainWindow"
+        xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+		xmlns:pages="clr-namespace:Material.Demo.Pages"
+		x:Class="OptiLearn.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="OptiLearn">
 
@@ -14,6 +16,43 @@
 
 	<TabControl TabStripPlacement="Left">
 		<TabItem Header="Tab1">
+			
+		</TabItem>
+		<TabItem Header="Tab2">
+			<Grid ColumnDefinitions="*,Auto">
+				<TextBlock Grid.Column="0" HorizontalAlignment="Center">
+				<Label HorizontalContentAlignment="Center" >World war one</Label>
+				</TextBlock>
+				<StackPanel Grid.Column="1" Margin="16, 0">
+					<TextBlock Classes="Headline4 Subheadline" Text="Side sheets" />
+
+					<controls:SideSheet
+						Name="SideSheet"
+						Width="500" Height="560" BorderBrush="Black" BorderThickness="1"
+						SideSheetDirection="Right"
+						SideSheetOpened="{CompiledBinding SideInfoOpened}"
+						SideSheetContent="{CompiledBinding Information}"
+						SideSheetHeader="{CompiledBinding Information.Header}">
+						<controls:SideSheet.SideSheetContentTemplate>
+							<DataTemplate DataType="models:SideSheetData">
+								<StackPanel>
+									<TextBlock Classes="Headline6" Text="{CompiledBinding ContentHeader}"/>
+									<TextBlock Text="{CompiledBinding ImportantInfos}" TextWrapping="Wrap"></TextBlock>
+								</StackPanel>
+							</DataTemplate>
+						</controls:SideSheet.SideSheetContentTemplate>
+						<Panel>
+							<pages:Home />
+							<Button Classes="Icon" Width="36" Height="36"
+									HorizontalAlignment="Right"
+									VerticalAlignment="Top"
+									Content="{avalonia:MaterialIconExt MenuOpen, Size=20}"
+									IsVisible="{Binding !#SideSheet.SideSheetOpened}"
+									Click="OpenSideInfoButton_OnClick" />
+						</Panel>
+					</controls:SideSheet>
+				</StackPanel>
+			</Grid>
 			
 		</TabItem>
 	</TabControl>
