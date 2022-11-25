@@ -1,6 +1,9 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Material.Colors;
+using Material.Styles.Themes.Base;
+using Material.Styles.Themes;
 using OptiLearn.ViewModels;
 using OptiLearn.Views;
 
@@ -22,6 +25,17 @@ namespace OptiLearn
                     DataContext = new MainWindowViewModel(),
                 };
             }
+
+            /*PrimaryColor primary = PrimaryColor.Indigo;
+            Color primaryColor = SwatchHelper.Lookup[(MaterialColor)primary];
+
+            SecondaryColor secondary = SecondaryColor.Teal;
+            Color secondaryColor = SwatchHelper.Lookup[(MaterialColor)secondary];
+
+            // For dark theme use  Theme.Dark;
+            IBaseTheme baseTheme = Theme.Light;
+
+            ITheme theme = Theme.Create(baseTheme, primaryColor, secondaryColor);*/
 
             base.OnFrameworkInitializationCompleted();
         }
