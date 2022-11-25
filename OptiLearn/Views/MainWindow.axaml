@@ -20,7 +20,6 @@
 			<Setter Property="Margin" Value="18 18 18 0"/>
 		</Style>
 		<Style Selector="TextBlock">
-			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
 			<Setter Property="FontFamily" Value="Raleway"/>
 			<Setter Property="FontWeight" Value="Light"/>
 			<Setter Property="FontSize" Value="14"/>
@@ -29,7 +28,6 @@
 			<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}"/>
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="CornerRadius" Value="32"/>
-			<Setter Property="Margin" Value="16"/>
 			<Setter Property="Height" Value="28"/>
 
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
@@ -41,14 +39,17 @@
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="CornerRadius" Value="16"/>
 			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Margin" Value="16"/>
-			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Padding" Value="9 0"/>
 			<Setter Property="Height" Value="24"/>
 			
-			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
 			<Setter Property="FontFamily" Value="Raleway"/>
 			<Setter Property="FontWeight" Value="Light"/>
 			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="Grid.Sidebar">
+			<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="Width" Value="325"/>
 		</Style>
 	</Window.Styles>
 
@@ -61,25 +62,32 @@
 				</Grid>
 			</TabItem>-->
 			<TabItem Header="Courses" x:Name="tCourses">
-				<Grid Background="#701D1D1D" ColumnDefinitions="*, 325" RowDefinitions="auto, *" x:Name="grCourses">
+				<Grid Background="#701D1D1D" ColumnDefinitions="*, auto" RowDefinitions="auto, *" x:Name="grCourses">
 					<TextBlock Classes="Header" Text="{Binding txName}"/>
 
 					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-						<TextBlock Text="{Binding txContent}" FontSize="16" Margin="18 0"/>
+						<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent}" FontSize="16" Margin="18 0"/>
 					</ScrollViewer>
 					
-					<Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="10" Background="#151515" VerticalAlignment="Stretch"
+					<Grid Classes="Sidebar" Grid.Column="1" Grid.Row="0" Grid.RowSpan="10"
 						  RowDefinitions="auto, *, auto, auto">
 						<TextBlock Classes="Header" Text="Assistant"/>
-						<StackPanel Grid.Row="1">
-							
+						<StackPanel Grid.Row="1" Orientation="Vertical">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+								<Border Background="#1B71C1" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Text="Hello! Need some help?" Margin="8 8 8 7" VerticalAlignment="Center"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="Who started WW1?" Margin="8 8 8 7" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+								<Border Background="{DynamicResource MaterialDesignBody}" Height="20" Width="7" VerticalAlignment="Center" HorizontalAlignment="Right" CornerRadius="3 0 0 3"/>
+							</StackPanel>
 						</StackPanel>
-						<StackPanel Grid.Row="2">
-							<Button Content="summary"/>
-							<Button Content="narrator"/>
-							<Button Content="visualize"/>
+						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12 0">
+							<Button Content="summary" Margin="4 0" BorderBrush="#6EB6F6" Foreground="#6EB6F6"/>
+							<Button Content="narrator" Margin="4 0" BorderBrush="#1B71C1" Foreground="#1B71C1"/>
+							<Button Content="visualize" Margin="4 0" BorderBrush="#00C2E0" Foreground="#00C2E0"/>
 						</StackPanel>
-						<TextBox  Grid.Row="3" Watermark="Ask anything">
+						<TextBox  Grid.Row="3" Watermark="Ask anything" Margin="16 10 16 12">
 							<TextBox.InnerLeftContent>
 								<Border Width="10"/>
 							</TextBox.InnerLeftContent>
