@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptiLearn", "OptiLearn\OptiLearn.csproj", "{39A71112-1FC0-4058-A3BD-DB1E5B2D1DE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39A71112-1FC0-4058-A3BD-DB1E5B2D1DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A71112-1FC0-4058-A3BD-DB1E5B2D1DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A71112-1FC0-4058-A3BD-DB1E5B2D1DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A71112-1FC0-4058-A3BD-DB1E5B2D1DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AFC3CE1-4EAB-40FC-9119-0E93421F48AB}
+	EndGlobalSection
+EndGlobal
