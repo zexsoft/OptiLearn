@@ -15,7 +15,9 @@
 			<Style.Resources>
 				<SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#6EB6F6"></SolidColorBrush>
 				<SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#1B71C1"></SolidColorBrush>
-				
+				<SolidColorBrush x:Key="TertiaryHueMidBrush" Color="#00C2E0"></SolidColorBrush>
+
+				<SolidColorBrush x:Key="MaterialDesignBackground" Color="#151515"></SolidColorBrush>
 			</Style.Resources>
 		</Style>
 	</Application.Styles>
