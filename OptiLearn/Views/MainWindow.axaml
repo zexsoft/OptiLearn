@@ -97,21 +97,18 @@
 			</TabItem>
 			
 			<TabItem Header="Plans">
-				<Grid ColumnDefinitions="*, 325">
-					
+				<Grid ColumnDefinitions="*, auto">
 					<Grid ColumnDefinitions="*" RowDefinitions="auto, *">
 						<TextBlock Classes="Header" Text="Calendar"/>
 						<Calendar Grid.Row="1" SelectionMode="SingleDate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 					</Grid>
 
-					<Grid Grid.Column="1" ColumnDefinitions="*" RowDefinitions="*, *,100">
+					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*" RowDefinitions="*, *, auto">
 						<TextBlock Classes="Header" Text="Schedule" Grid.Row="0" Grid.Column="1"/>
 						<TextBlock Classes="Header" Text="Pomodoro" Grid.Row="1" Grid.Column="1"/>
 
-						
 						<ProgressBar Value="30" Height=" 20" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Margin="16"/>
 					</Grid>
-					
 				</Grid>
 			</TabItem>
 			
