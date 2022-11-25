@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using OptiLearn.ViewModels;
 
 namespace OptiLearn.Views
 {
@@ -7,6 +8,8 @@ namespace OptiLearn.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            grCourses.DataContext = new Course("Zexsoft", "Impossible possibilities.");
         }
     }
 }

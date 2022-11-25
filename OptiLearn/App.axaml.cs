@@ -26,17 +26,6 @@ namespace OptiLearn
                 };
             }
 
-            /*PrimaryColor primary = PrimaryColor.Indigo;
-            Color primaryColor = SwatchHelper.Lookup[(MaterialColor)primary];
-
-            SecondaryColor secondary = SecondaryColor.Teal;
-            Color secondaryColor = SwatchHelper.Lookup[(MaterialColor)secondary];
-
-            // For dark theme use  Theme.Dark;
-            IBaseTheme baseTheme = Theme.Light;
-
-            ITheme theme = Theme.Create(baseTheme, primaryColor, secondaryColor);*/
-
             base.OnFrameworkInitializationCompleted();
         }
     }

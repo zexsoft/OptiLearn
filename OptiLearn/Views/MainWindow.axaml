@@ -8,42 +8,85 @@
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		x:Class="OptiLearn.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="OptiLearn"
-        Background="Transparent" FontFamily="Raleway Thin, Segoe UI, Roboto"
+        Icon="/Assets/avalonia-logo.ico" Title="OptiLearn" Background="Transparent"
         TransparencyLevelHint="AcrylicBlur" ExtendClientAreaToDecorationsHint="False">
 
-	<Grid Background="#701D1D1D" Margin="0 0 0 0">
-	    <TabControl TabStripPlacement="Left">
-		    <TabItem Header="Home">
-			    <Grid Background="#701D1D1D">
-				    
-			    </Grid>
-		    </TabItem>
-		<TabItem Header="Tab2">
-			<Grid ColumnDefinitions="*,Auto">
-				<TextBlock Grid.Column="0" HorizontalAlignment="Center">
-				<Label HorizontalContentAlignment="Center" >World war one</Label>
-				</TextBlock>
-				<StackPanel Grid.Column="1" Margin="16, 0">
-					<TextBlock Classes="Headline4 Subheadline" Text="Side sheets" />
+	<Window.Styles>
+		<Style Selector="TextBlock.Header">
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Overpass"/>
+			<Setter Property="FontSize" Value="38"/>
+			<Setter Property="FontWeight" Value="ExtraBold"/>
+			<Setter Property="Margin" Value="18 18 18 0"/>
+		</Style>
+		<Style Selector="TextBlock">
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontWeight" Value="Light"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="32"/>
+			<Setter Property="Margin" Value="16"/>
+			<Setter Property="Height" Value="28"/>
 
-					<controls:SideSheet
-						Name="SideSheet"
-						Width="500" Height="560" BorderBrush="Black" BorderThickness="1"
-						SideSheetDirection="Right">
-						
-						<Panel>
-							<Button Classes="Icon" Width="36" Height="36"
-									HorizontalAlignment="Right"
-									VerticalAlignment="Top"
-									Content="{avalonia:MaterialIconExt MenuOpen}"
-									IsVisible="{Binding !#SideSheet.SideSheetOpened}"/>
-						</Panel>
-					</controls:SideSheet>
-				</StackPanel>
-			</Grid>
-		</TabItem>
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontWeight" Value="Light"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Margin" Value="16"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Height" Value="24"/>
+			
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontWeight" Value="Light"/>
+			<Setter Property="FontSize" Value="14"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid Background="#701D1D1D" Margin="0 0 0 0">
+		<TabControl TabStripPlacement="Left">
+			<!--
+			<TabItem Header="Home">
+				<Grid Background="#701D1D1D">
+				    
+				</Grid>
+			</TabItem>-->
+			<TabItem Header="Courses" x:Name="tCourses">
+				<Grid Background="#701D1D1D" ColumnDefinitions="*, 325" RowDefinitions="auto, *" x:Name="grCourses">
+					<TextBlock Classes="Header" Text="{Binding txName}"/>
+
+					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+						<TextBlock Text="{Binding txContent}" FontSize="16" Margin="18 0"/>
+					</ScrollViewer>
+					
+					<Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="10" Background="#151515" VerticalAlignment="Stretch"
+						  RowDefinitions="auto, *, auto, auto">
+						<TextBlock Classes="Header" Text="Assistant"/>
+						<StackPanel Grid.Row="1">
+							
+						</StackPanel>
+						<StackPanel Grid.Row="2">
+							<Button Content="summary"/>
+							<Button Content="narrator"/>
+							<Button Content="visualize"/>
+						</StackPanel>
+						<TextBox  Grid.Row="3" Watermark="Ask anything">
+							<TextBox.InnerLeftContent>
+								<Border Width="10"/>
+							</TextBox.InnerLeftContent>
+						</TextBox>
+					</Grid>
+				</Grid>
+			</TabItem>
 	    </TabControl>
 	</Grid>
 </Window>
