@@ -51,6 +51,12 @@
 			<Setter Property="VerticalAlignment" Value="Stretch"/>
 			<Setter Property="Width" Value="325"/>
 		</Style>
+		<Style Selector="CheckBox">
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontWeight" Value="Light"/>
+			<Setter Property="Foreground" Value="Aqua"/>
+		</Style>
+
 	</Window.Styles>
 
 	<Grid Background="#701D1D1D" Margin="0 0 0 0">
@@ -96,7 +102,7 @@
 				</Grid>
 			</TabItem>
 			<TabItem Header="Projects">
-				<Grid>
+				<Grid Classes="Sidebar">
 					<Expander IsExpanded="False" HorizontalAlignment="Right">
 					<Expander.Header >
 						<Label>
@@ -104,7 +110,9 @@
 						</Label>
 					</Expander.Header>
 						<StackPanel>
-								<CheckBox>Bom alex are mere si pere si se duce la rafael si ii mananca pruna lui lupse</CheckBox>
+								<CheckBox>
+									<TextBlock TextWrapping="Wrap">Rafael are mere si merele lui rafael sunt bune si zemoase</TextBlock>
+								</CheckBox>
 								<CheckBox>POC</CheckBox>
 								<CheckBox>Hop</CheckBox>
 						</StackPanel>
