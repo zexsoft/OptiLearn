@@ -12,8 +12,8 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-	<TabControl>
-		<TabItem Header="">
+	<TabControl TabStripPlacement="Left">
+		<TabItem Header="Tab1">
 			
 		</TabItem>
 	</TabControl>
