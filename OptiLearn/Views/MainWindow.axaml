@@ -3,21 +3,18 @@
         xmlns:vm="using:OptiLearn.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:pages="clr-namespace:Material.Demo.Pages"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
-		xmlns:pages="clr-namespace:Material.Demo.Pages"
 		x:Class="OptiLearn.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="OptiLearn"
         Background="Transparent" FontFamily="Raleway Thin, Segoe UI, Roboto"
         TransparencyLevelHint="AcrylicBlur" ExtendClientAreaToDecorationsHint="False">
 
-	<Grid Background="#701D1D1D" Margin="0 0 0 0" IsHitTestVisible="False">
-	    <TabControl TabStripPlacement="Left" ZIndex="-1">
+	<Grid Background="#701D1D1D" Margin="0 0 0 0">
+	    <TabControl TabStripPlacement="Left">
 		    <TabItem Header="Home">
 			    <Grid Background="#701D1D1D">
 				    
@@ -34,31 +31,18 @@
 					<controls:SideSheet
 						Name="SideSheet"
 						Width="500" Height="560" BorderBrush="Black" BorderThickness="1"
-						SideSheetDirection="Right"
-						SideSheetOpened="{CompiledBinding SideInfoOpened}"
-						SideSheetContent="{CompiledBinding Information}"
-						SideSheetHeader="{CompiledBinding Information.Header}">
-						<controls:SideSheet.SideSheetContentTemplate>
-							<DataTemplate DataType="models:SideSheetData">
-								<StackPanel>
-									<TextBlock Classes="Headline6" Text="{CompiledBinding ContentHeader}"/>
-									<TextBlock Text="{CompiledBinding ImportantInfos}" TextWrapping="Wrap"></TextBlock>
-								</StackPanel>
-							</DataTemplate>
-						</controls:SideSheet.SideSheetContentTemplate>
+						SideSheetDirection="Right">
+						
 						<Panel>
-							<pages:Home />
 							<Button Classes="Icon" Width="36" Height="36"
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"
-									Content="{avalonia:MaterialIconExt MenuOpen, Size=20}"
-									IsVisible="{Binding !#SideSheet.SideSheetOpened}"
-									Click="OpenSideInfoButton_OnClick" />
+									Content="{avalonia:MaterialIconExt MenuOpen}"
+									IsVisible="{Binding !#SideSheet.SideSheetOpened}"/>
 						</Panel>
 					</controls:SideSheet>
 				</StackPanel>
 			</Grid>
-			
 		</TabItem>
 	    </TabControl>
 	</Grid>
