@@ -8,6 +8,13 @@
     </Application.DataTemplates>
 
 	<Application.Styles>
-		<themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Purple" SecondaryColor="Lime" />
+		<themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="Teal"/>
+		
+		<Style>
+			<Style.Resources>
+				<SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#6EB6F6"></SolidColorBrush>
+				<SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#1B71C1"></SolidColorBrush>
+			</Style.Resources>
+		</Style>
 	</Application.Styles>
 </Application>
