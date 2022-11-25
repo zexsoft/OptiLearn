@@ -54,13 +54,13 @@
 	</Window.Styles>
 
 	<Grid Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl TabStripPlacement="Left">
-			<!--
+		<TabControl TabStripPlacement="Left" SelectedIndex="1">
 			<TabItem Header="Home">
 				<Grid Background="#701D1D1D">
 				    
 				</Grid>
-			</TabItem>-->
+			</TabItem>
+			
 			<TabItem Header="Courses" x:Name="tCourses">
 				<Grid Background="#701D1D1D" ColumnDefinitions="*, auto" RowDefinitions="auto, *" x:Name="grCourses">
 					<TextBlock Classes="Header" Text="{Binding txName}"/>
@@ -74,8 +74,8 @@
 						<TextBlock Classes="Header" Text="Assistant"/>
 						<StackPanel Grid.Row="1" Orientation="Vertical">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-								<Border Background="#1B71C1" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Text="Hello! Need some help?" Margin="8 8 8 7" VerticalAlignment="Center"/>
+								<Border Background="#00C2E0" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Foreground="#00C2E0" Text="Hello! Need some help?" Margin="8 8 8 7" VerticalAlignment="Center"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="Who started WW1?" Margin="8 8 8 7" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -83,8 +83,8 @@
 							</StackPanel>
 						</StackPanel>
 						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12 0">
-							<Button Content="summary" Margin="4 0" BorderBrush="#6EB6F6" Foreground="#6EB6F6"/>
-							<Button Content="narrator" Margin="4 0" BorderBrush="#1B71C1" Foreground="#1B71C1"/>
+							<Button Content="summary" Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+							<Button Content="narrator" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
 							<Button Content="visualize" Margin="4 0" BorderBrush="#00C2E0" Foreground="#00C2E0"/>
 						</StackPanel>
 						<TextBox  Grid.Row="3" Watermark="Ask anything" Margin="16 10 16 12">
@@ -100,18 +100,40 @@
 				<Grid ColumnDefinitions="*, auto">
 					<Grid ColumnDefinitions="*" RowDefinitions="auto, *">
 						<TextBlock Classes="Header" Text="Calendar"/>
-						<Calendar Grid.Row="1" SelectionMode="SingleDate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+						<Calendar Grid.Row="1" SelectionMode="SingleDate" FontFamily="Overpass" FontWeight="ExtraBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 					</Grid>
 
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*" RowDefinitions="*, *, auto">
-						<TextBlock Classes="Header" Text="Schedule" Grid.Row="0" Grid.Column="1"/>
-						<TextBlock Classes="Header" Text="Pomodoro" Grid.Row="1" Grid.Column="1"/>
+					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*" RowDefinitions="auto, *, auto, auto, auto, auto">
+						<TextBlock Classes="Header" Text="Schedule"/>
 
-						<ProgressBar Value="30" Height=" 20" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Margin="16"/>
+						<StackPanel Grid.Row="1">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 3">
+								<Border Background="{DynamicResource PrimaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Text="Due" Margin="8 0 5 0" VerticalAlignment="Center"/>
+								<TextBlock Text="Ancient Greece" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 3">
+								<Border Background="{DynamicResource MaterialDesignBody}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="Start" Margin="8 0 5 0" VerticalAlignment="Center"/>
+								<TextBlock Foreground="#00C2E0" Text="Ancient Egypt" VerticalAlignment="Center"/>
+							</StackPanel>
+						</StackPanel>
+						
+						<TextBlock Classes="Header" Text="Pomodoro" Grid.Row="2" Grid.Column="1"/>
+
+						<Grid Grid.Row="3" ColumnDefinitions="*, auto" Margin="16 0">
+							<TextBlock Grid.Column="0" Text="study" Foreground="{DynamicResource MaterialDesignBody}"/>
+							<TextBlock Grid.Column="1" Text="30m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Right"/>
+						</Grid>
+
+						<TimePicker Grid.Row="4">
+							
+						</TimePicker>
+						
+						<ProgressBar Background="#00C2E0" Value="30" Grid.Row="5" Grid.Column="1" Margin="16 2 16 16"/>
 					</Grid>
 				</Grid>
 			</TabItem>
-			
 	    </TabControl>
 	</Grid>
 </Window>
