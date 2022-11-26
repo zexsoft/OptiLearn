@@ -31,7 +31,7 @@
 		<Style Selector="TextBlock">
 			<Setter Property="FontFamily" Value="Raleway"/>
 			<Setter Property="FontWeight" Value="Light"/>
-			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontSize" Value="16"/>
 			<Setter Property="TextWrapping" Value="Wrap"/>
 		</Style>
 		<Style Selector="TextBox">
@@ -56,6 +56,19 @@
 			<Setter Property="Height" Value="57"/>
 		</Style>
 		<Style Selector="Button">
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Padding" Value="9 0"/>
+			<Setter Property="Height" Value="24"/>
+			
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontWeight" Value="Light"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+			<Setter Property="ToolTip.ShowDelay" Value="850"/>
+		</Style>
+		<Style Selector="ComboBox">
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="CornerRadius" Value="16"/>
 			<Setter Property="Background" Value="Transparent"/>
@@ -149,7 +162,7 @@
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl TabStripPlacement="Left" SelectedIndex="4" VerticalAlignment="Stretch" IsHitTestVisible="True">
+		<TabControl TabStripPlacement="Left" SelectedIndex="5" VerticalAlignment="Stretch" IsHitTestVisible="True">
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
 				<Grid x:Name="tMain" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
@@ -386,23 +399,46 @@
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 
-					<Grid RowDefinitions="auto,100,auto,auto" ColumnDefinitions="300,300" >
+					<Grid RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="300,300" >
 						<TextBlock Classes="Header" Text="User" Grid.Row="0"/>
 
-						<TextBox Margin="20"  UseFloatingWatermark="False" Watermark="Username" Grid.Row="1" />
-						<TextBox Margin="20"  UseFloatingWatermark="False" Watermark="Password" Grid.Row="2" />
-						<ComboBox Margin="20"  Classes="Outline" Grid.Row="3">
-							<TextBlock Text="Item 1" />
-							<TextBlock Text="Item 2" />
-							<TextBlock Text="Item 3" />
-							<TextBlock Text="Item 4" />
-						</ComboBox>
+						<StackPanel Grid.Row="1">
+							<TextBox Margin="18 8" UseFloatingWatermark="False" Watermark="Username">
+								<TextBox.InnerLeftContent>
+									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="User" Width="20" Height="20"/>
+									</Border>
+								</TextBox.InnerLeftContent>
+							</TextBox>
+							<TextBox Margin="18 8" UseFloatingWatermark="False" Watermark="Password">
+								<TextBox.InnerLeftContent>
+									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Password" Width="20" Height="20"/>
+									</Border>
+								</TextBox.InnerLeftContent>
+							</TextBox>
+							<ComboBox Margin="18 8"/>
+						</StackPanel>
 					</Grid>
 
 					<Grid  Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto,auto,auto,*,auto">
 						<TextBlock Classes="Header" Text="Login" Grid.Row="0"/>
-						<TextBox Margin="18"  UseFloatingWatermark="False" Watermark="Username" Grid.Row="1" />
-						<TextBox Margin="18"  UseFloatingWatermark="False" Watermark="Password" Grid.Row="2" />
+						<StackPanel Grid.Row="1">
+							<TextBox Margin="18 8" UseFloatingWatermark="False" Watermark="Username" Grid.Row="1">
+								<TextBox.InnerLeftContent>
+									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="User" Width="20" Height="20"/>
+									</Border>
+								</TextBox.InnerLeftContent>
+							</TextBox>
+							<TextBox Margin="18 8" UseFloatingWatermark="False" Watermark="Password" Grid.Row="2">
+								<TextBox.InnerLeftContent>
+									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Password" Width="20" Height="20"/>
+									</Border>
+								</TextBox.InnerLeftContent>
+							</TextBox>
+						</StackPanel>
 						<Button Margin="18" Classes="Outline" Grid.Row="4"  Content="login"
 								HorizontalAlignment="Left"  Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 					</Grid>
