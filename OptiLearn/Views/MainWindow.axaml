@@ -254,23 +254,17 @@
 					<Grid Classes="Sidebar" Grid.Column="1" Grid.Row="0" Grid.RowSpan="10"
 						  RowDefinitions="auto, *, auto, auto, auto">
 						<TextBlock Classes="Header" Text="Overview"/>
-						<StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="#30FF60" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="Question" Margin="8 8 7 8" VerticalAlignment="Center"/>
-								<TextBlock FontFamily="Overpass" Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="#1" VerticalAlignment="Center"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="#FF4020" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="Question" Margin="8 8 7 8" VerticalAlignment="Center"/>
-								<TextBlock FontFamily="Overpass" Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="#2" VerticalAlignment="Center"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="#757575" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="Question" Margin="8 8 7 8" VerticalAlignment="Center"/>
-								<TextBlock FontFamily="Overpass" Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="#3" VerticalAlignment="Center"/>
-							</StackPanel>
-						</StackPanel>
+						<ListBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+										<Border Background="#757575" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+										<TextBlock Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="Question" Margin="8 8 7 8" VerticalAlignment="Center"/>
+										<TextBlock FontFamily="Overpass" Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="#3" VerticalAlignment="Center"/>
+									</StackPanel>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
 						<TextBlock Grid.Row="2" Classes="Header" Text="Time"/>
 
 						<Grid Grid.Row="3" ColumnDefinitions="*, auto" Margin="16 0" HorizontalAlignment="Stretch">
@@ -300,19 +294,17 @@
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
 						<TextBlock Classes="Header" Text="Schedule"/>
 						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
-
-						<StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch">
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5">
-								<Border Background="{DynamicResource SecondaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource SecondaryHueMidBrush}" Text="due" Margin="8 0 5 0" VerticalAlignment="Center"/>
-								<TextBlock Text="Ancient Greece" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5">
-								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource TertiaryHueMidBrush}" Text="start" Margin="8 0 5 0" VerticalAlignment="Center"/>
-								<TextBlock Text="Ancient Egypt" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
-							</StackPanel>
-						</StackPanel>
+						<ListBox Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5">
+										<Border Background="{DynamicResource SecondaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+										<TextBlock Foreground="{DynamicResource SecondaryHueMidBrush}" Text="due" Margin="8 0 5 0" VerticalAlignment="Center"/>
+										<TextBlock Text="Ancient Greece" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+									</StackPanel>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
 
 						<TextBlock Grid.ColumnSpan="2" Classes="Header" Text="Sessions" Grid.Row="2"/>
 
@@ -338,17 +330,16 @@
 					<Grid Classes="Sidebar" Grid.Column="1" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto">
 						<TextBlock Classes="Header" Text="Key points"/>
 						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
-						
-						<StackPanel Grid.ColumnSpan="2" Orientation="Vertical" Grid.Row="1" Margin="0 2" HorizontalAlignment="Stretch">
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="History of the Arabic Peninsula"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="Algebra in Islam"/>
-							</StackPanel>
-						</StackPanel>
+						<ListBox Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+										<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+										<TextBlock Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="History of the Arabic Peninsula"/>
+									</StackPanel>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
 						
 						<Button Classes="Outline" Grid.ColumnSpan="2" Content="research" HorizontalAlignment="Left" Foreground="{DynamicResource PrimaryHueMidBrush}"
 								ToolTip.Tip="Generate research based on key points" Margin="12" Grid.Row="2" VerticalAlignment="Bottom"/>
