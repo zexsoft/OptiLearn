@@ -34,7 +34,7 @@ namespace OptiLearn.Views
         public int pomodoroRemaining = 0;
         public Timer pomodoroTimer;
 
-        BertModel modelQuestion;
+        BertQuestionModel modelQuestion;
         ObservableCollection<Conversation> assistantChat { get; set; } = new();
 
         public MainWindow()
@@ -51,13 +51,13 @@ namespace OptiLearn.Views
             // Models
             if (File.Exists("Model/bert-question.onnx"))        // BERT Question
             {
-                BertModelConfiguration modelCfgQuestion = new BertModelConfiguration()
+                BertQuestionModelConfiguration modelCfgQuestion = new BertQuestionModelConfiguration()
                 {
                     VocabularyFile = "Model/vocab.txt",
                     ModelPath = "Model/bert-question.onnx"
                 };
 
-                modelQuestion = new BertModel(modelCfgQuestion);
+                modelQuestion = new BertQuestionModel(modelCfgQuestion);
                 modelQuestion.Initialize();
             }
             else
@@ -67,17 +67,15 @@ namespace OptiLearn.Views
             }
         }
 
+        // COURSES  
+
         private void tbAssistant_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                //pbResponse.IsVisible = true;
-                //txResponse.IsVisible = false;
                 assistantChat.Add(new Conversation(tbAssistant.Text, true));
-
                 Dispatcher.UIThread.Post(() => { }, DispatcherPriority.MaxValue);
 
-                //txResponse.Text = ;
                 assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
 
                 lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
@@ -85,6 +83,17 @@ namespace OptiLearn.Views
 
                 e.Handled = true;
             }
+        }
+
+        private void btSummarize_Click(object sender, KeyEventArgs e)
+        {
+            assistantChat.Add(new Conversation(tbAssistant.Text, true));
+            Dispatcher.UIThread.Post(() => { }, DispatcherPriority.MaxValue);
+
+            assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
+
+            lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
+            tbAssistant.Text = string.Empty;
         }
 
         SpeechSynthesizer synthesizer = new SpeechSynthesizer();
@@ -114,6 +123,8 @@ namespace OptiLearn.Views
             }
         }
 
+        // PLANNING
+
         private void ckSession_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
 
@@ -123,15 +134,47 @@ namespace OptiLearn.Views
 
         public string QuestionAI(string query)
         {
-            string[] sentences = Regex.Split(currentCourse.Content, @"(?<=[\.!\?])\s+");
+            try
+            {
+                string[] sentences = Regex.Split(currentCourse.Content, @"(?<=[\.!\?])\s+");
 
-            QSearch search = new QSearch(0, 0) { UseTokenLink = true, MatchCase = false };
-            List<string> res = search.ProcessQuery(sentences.ToList(), query);
-            string context = (res.Count() > 0 ? res.Aggregate((sum, val) => sum + ". " + val) : "") + sentences.Aggregate((sum, val) => sum + ". " + val);
-            if (context.Length > 256) context = context.Remove(256);
+                QSearch search = new QSearch(0, 0) { UseTokenLink = true, MatchCase = false };
+                List<string> res = search.ProcessQuery(sentences.ToList(), query);
+                string context = (res.Count() > 0 ? res.Aggregate((sum, val) => sum + ". " + val) : "") + sentences.Aggregate((sum, val) => sum + ". " + val);
+                if (context.Length > 256) context = context.Remove(256);
 
-            var (tokens, probability) = modelQuestion.Predict(context, query);
-            return tokens.Aggregate((sum, val) => sum + " " + val);
+                var (tokens, probability) = modelQuestion.Predict(context, query);
+                return tokens.Aggregate((sum, val) => sum + " " + val);
+            }
+            catch
+            {
+                return "idk";
+            }
+        }
+
+        public string SummarizeAI(string query)
+        {
+            string content = currentCourse.Content;
+
+            try
+            {
+                if (query != string.Empty)
+                {
+                    string[] sentences = Regex.Split(content, @"(?<=[\.!\?])\s+");
+
+                    QSearch search = new QSearch(0, 0) { UseTokenLink = true, MatchCase = false };
+                    List<string> res = search.ProcessQuery(sentences.ToList(), query);
+
+                    content = (res.Count() > 0 ? res.Aggregate((sum, val) => sum + ". " + val) : "") + sentences.Aggregate((sum, val) => sum + ". " + val);
+                }
+                if (content.Length > 256) content = content.Remove(256);
+
+                return content;
+            }
+            catch
+            {
+                return content;
+            }
         }
     }
 

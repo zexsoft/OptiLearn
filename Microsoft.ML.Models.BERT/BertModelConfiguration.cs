@@ -2,7 +2,7 @@
 
 namespace Microsoft.ML.Models.BERT
 {
-    public class BertModelConfiguration : IOnnxModel
+    public class BertQuestionModelConfiguration : IOnnxModel
     {
         public int MaxSequenceLength { get; set; } = 256;
 

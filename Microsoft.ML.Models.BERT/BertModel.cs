@@ -10,14 +10,14 @@ using Microsoft.ML.Models.BERT.Tokenizers;
 
 namespace Microsoft.ML.Models.BERT
 {
-    public class BertModel : IDisposable
+    public class BertQuestionModel : IDisposable
     {
-        private readonly BertModelConfiguration _bertModelConfiguration;
+        private readonly BertQuestionModelConfiguration _bertModelConfiguration;
         private List<string> _vocabulary;
         private WordPieceTokenizer _wordPieceTokenizer;
         private PredictionEngine<BertFeature, BertPredictionResult> _predictionEngine;
 
-        public BertModel(BertModelConfiguration bertModelConfiguration)
+        public BertQuestionModel(BertQuestionModelConfiguration bertModelConfiguration)
         {
             _bertModelConfiguration = bertModelConfiguration;
         }
