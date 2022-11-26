@@ -189,12 +189,12 @@ namespace Microsoft.ML.Models.BERT
 
     public class BertSummaryModel : IDisposable
     {
-        private readonly BertQuestionModelConfiguration _bertModelConfiguration;
+        private readonly BertSummarizeModelConfiguration _bertModelConfiguration;
         private List<string> _vocabulary;
         private WordPieceTokenizer _wordPieceTokenizer;
         private PredictionEngine<BertFeature, BertPredictionResult> _predictionEngine;
 
-        public BertQuestionModel(BertQuestionModelConfiguration bertModelConfiguration)
+        public BertSummaryModel(BertSummarizeModelConfiguration bertModelConfiguration)
         {
             _bertModelConfiguration = bertModelConfiguration;
         }
