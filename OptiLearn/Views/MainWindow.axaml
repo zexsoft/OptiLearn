@@ -7,9 +7,11 @@
         xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		x:Class="OptiLearn.Views.MainWindow" ExtendClientAreaChromeHints="SystemChrome"
-        Icon="/Assets/avalonia-logo.ico" Title="OptiLearn" Background="Transparent"
-        TransparencyLevelHint="AcrylicBlur" ExtendClientAreaToDecorationsHint="True">
+		x:Class="OptiLearn.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico" Title="OptiLearn"
+        Background="Transparent" ExtendClientAreaChromeHints="PreferSystemChrome"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True">
 
 	<Window.Styles>
 		<Style Selector="TextBlock.Header">
@@ -46,6 +48,40 @@
 			<Setter Property="FontWeight" Value="Light"/>
 			<Setter Property="FontSize" Value="14"/>
 		</Style>
+		<Style Selector="Button.Link">
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="CornerRadius" Value="20"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="Padding" Value="2"/>
+			<Setter Property="Margin" Value="12 15 12 0"/>
+			<Setter Property="Height" Value="20"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			
+			<Setter Property="FontFamily" Value="Overpass"/>
+			<Setter Property="FontWeight" Value="ExtraBold"/>
+			<Setter Property="FontSize" Value="18"/>
+		</Style>
+		<Style Selector="HeaderedContentControl.GroupBox">
+			<Setter Property="Background" Value="Transparent"/>
+			
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Border>
+							<StackPanel>
+								<Border
+                                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                                    BorderThickness="1" Padding="8 6"
+                                    CornerRadius="16">
+									<ContentPresenter Content="{TemplateBinding Content}"/>
+								</Border>
+							</StackPanel>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 		<Style Selector="Grid.Sidebar">
 			<Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
 			<Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -67,36 +103,57 @@
 	</Window.Styles>
 
 	<Grid Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl TabStripPlacement="Left" SelectedIndex="0" VerticalAlignment="Stretch">
-			<TabItem Header="Home">
+		<TabControl TabStripPlacement="Left" SelectedIndex="3" VerticalAlignment="Stretch" IsHitTestVisible="True">
+			<TabItem Header="Home" IsHitTestVisible="True">
 				<Grid Background="#501D1D1D" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto, auto">
 					<TextBlock Classes="Header" Text="Hello, Victor"/>
 					<TextBlock Grid.Column="1" FontFamily="Overpass" Foreground="{DynamicResource TertiaryHueMidBrush}"
 							   FontWeight="ExtraBold" FontSize="24" Text="738p" Margin="18 7" VerticalAlignment="Bottom"/>
 					
-					<TextBox Grid.Row="1" Grid.ColumnSpan="2" Watermark="Search subjects" Margin="18 7">
+					<TextBox Grid.Row="1" Grid.ColumnSpan="2" Watermark="search courses" Margin="18 7">
 						<TextBox.InnerLeftContent>
 							<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
 								<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Magnify" Width="20" Height="20" />
 							</Border>
 						</TextBox.InnerLeftContent>
 					</TextBox>
-					
-					<Grid Classes="Sidebar" Grid.Column="2" Grid.Row="0" Grid.RowSpan="10"
-						  RowDefinitions="auto, *, auto, auto">
-						<TextBlock Classes="Header" Text="Friends"/>
-					</Grid>
 
 					<Viewbox Stretch="Uniform" Grid.Row="2" Grid.ColumnSpan="2">
-						<Canvas Width="300" Height="300">
-							<Button Classes="Subject" Background="{DynamicResource TertiaryHueMidBrush}" Content="Algebra"
-									Canvas.Top="50" Canvas.Left="50" Height="80" Width="80"/>
+						<Canvas Width="275" Height="250">
+							<Button Classes="Subject" Background="{DynamicResource TertiaryHueMidBrush}" Content="Science"
+									Canvas.Top="50" Canvas.Left="50" Height="90" Width="90"/>
+							<Button Classes="Subject" Background="{DynamicResource PrimaryHueMidBrush}" Content="Literature"
+									Canvas.Top="125" Canvas.Left="115" Height="80" Width="80"/>
+							<Button Classes="Subject" Background="{DynamicResource SecondaryHueMidBrush}" Content="Scan"
+									Canvas.Top="145" Canvas.Left="42" Height="60" Width="60"/>
+							<Button Classes="Subject" Background="{DynamicResource SecondaryHueMidBrush}" Content="Docs"
+									Canvas.Top="50" Canvas.Left="150" Height="70" Width="70"/>
 						</Canvas>
 					</Viewbox>
+					
+					<Grid Classes="Sidebar" ColumnDefinitions="*, auto" Grid.Column="2" Grid.Row="0" Grid.RowSpan="10"
+						  RowDefinitions="auto, *, auto, auto">
+						<TextBlock Classes="Header" Text="Friends"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+
+						<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical" Margin="18 4">
+							<HeaderedContentControl Classes="GroupBox">
+								<Grid RowDefinitions="auto, auto" ColumnDefinitions="*, auto">
+									<TextBlock Text="Dobinda Catalin" Margin="2 3"></TextBlock>
+									<TextBlock Grid.Column="1" Text="367p" FontFamily="Overpass" FontWeight="ExtraBold"
+											   VerticalAlignment="Bottom" Margin="3 0"/>
+									<WrapPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+										<Button Content="Matrix Multiplication" Margin="2 5" BorderBrush="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignBody}"></Button>
+										<Button Content="Char Arrays" Margin="2 5" BorderBrush="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignBody}"></Button>
+									</WrapPanel>
+								</Grid>
+							</HeaderedContentControl>
+						</StackPanel>
+					</Grid>
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="Courses" x:Name="tCourses">
+			<TabItem Header="Courses" x:Name="tCourses" IsHitTestVisible="True">
 				<Grid Background="#501D1D1D" ColumnDefinitions="*, auto" RowDefinitions="auto, *" x:Name="grCourses">
 					<TextBlock Classes="Header" Text="{Binding txName}"/>
 
@@ -122,16 +179,18 @@
 							<Button Content="narrator" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
 							<Button Content="visualize" Margin="4 0" BorderBrush="{DynamicResource TertiaryHueMidBrush}" Foreground="{DynamicResource TertiaryHueMidBrush}"/>
 						</StackPanel>
-						<TextBox  Grid.Row="3" Watermark="Ask anything" Margin="16 10 16 12">
+						<TextBox  Grid.Row="3" Watermark="ask anything" Margin="16 10 16 12">
 							<TextBox.InnerLeftContent>
-								<Border Width="10"/>
+								<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+									<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="QuestionMarkCircleOutline" Width="20" Height="20" />
+								</Border>
 							</TextBox.InnerLeftContent>
 						</TextBox>
 					</Grid>
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="Plans">
+			<TabItem Header="Plans" IsHitTestVisible="True">
 				<Grid Background="#501D1D1D" ColumnDefinitions="*, auto">
 					<Grid ColumnDefinitions="*" RowDefinitions="auto, *">
 						<TextBlock Classes="Header" Text="Calendar"/>
@@ -143,14 +202,14 @@
 
 						<StackPanel Grid.Row="1">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5">
-								<Border Background="{DynamicResource PrimaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Text="Due" Margin="8 0 5 0" VerticalAlignment="Center"/>
+								<Border Background="{DynamicResource SecondaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Foreground="{DynamicResource SecondaryHueMidBrush}" Text="due" Margin="8 0 5 0" VerticalAlignment="Center"/>
 								<TextBlock Text="Ancient Greece" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5">
-								<Border Background="{DynamicResource MaterialDesignBody}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Text="Start" Margin="8 0 5 0" VerticalAlignment="Center"/>
-								<TextBlock Foreground="{DynamicResource TertiaryHueMidBrush}" Text="Ancient Egypt" VerticalAlignment="Center"/>
+								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Foreground="{DynamicResource TertiaryHueMidBrush}" Text="start" Margin="8 0 5 0" VerticalAlignment="Center"/>
+								<TextBlock Text="Ancient Egypt" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
 							</StackPanel>
 						</StackPanel>
 						
@@ -169,21 +228,29 @@
 					</Grid>
 				</Grid>
 			</TabItem>
-			<TabItem Header="Projects">
+			
+			<TabItem Header="Projects" IsHitTestVisible="True">
 				<Grid ColumnDefinitions="*, auto">
 					<Grid Classes="Sidebar" Grid.Column="1" RowDefinitions="auto, auto, *">
-							<TextBlock Classes="Header" Text="Bullet points"/>
-							<StackPanel Grid.Row="1">
-								<CheckBox>
-									<TextBlock TextWrapping="Wrap">Rafael are mere si merele lui rafael sunt bune si zemoase</TextBlock>
-								</CheckBox>
-								
+							<TextBlock Classes="Header" Text="Key points"/>
+							<StackPanel Orientation="Vertical" Grid.Row="1" Margin="18 2">
+								<StackPanel Orientation="Horizontal">
+									<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="8" Width="8" VerticalAlignment="Center" CornerRadius="4"/>
+									<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Margin="8 4" TextWrapping="Wrap" Text="History of the Arabic Peninsula"/>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal">
+									<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="8" Width="8" VerticalAlignment="Center" CornerRadius="4"/>
+									<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Margin="8 4" TextWrapping="Wrap" Text="Algebra in Islam"/>
+								</StackPanel>
 							</StackPanel>
-							<Button Classes="Outline" Content="Add task" HorizontalAlignment="Stretch" Foreground="{DynamicResource MaterialDesignBody}"
-									ToolTip.Tip="Create a new task" Margin="12" Grid.Row="2" VerticalAlignment="Bottom"/>
+							<Button Classes="Outline" Content="write project" HorizontalAlignment="Stretch" Foreground="{DynamicResource MaterialDesignBody}"
+									ToolTip.Tip="Generate project based on key points" Margin="12" Grid.Row="2" VerticalAlignment="Bottom"/>
 					</Grid>
 				</Grid>
 			</TabItem>
+
+			<!--User must be able to select region for TTS, Wiki source-->
+			<!--Settings separate, will contain -->
 	    </TabControl>
 	</Grid>
 </Window>

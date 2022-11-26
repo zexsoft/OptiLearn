@@ -9,9 +9,12 @@ namespace OptiLearn.ViewModels
 {
     public class Course : ViewModelBase
     {
+        public int Id;
+        public int OwnerId;
         public string Name;
         public string Content;
 
+        #region MVVM
         public string txName
         {
             get => Name;
@@ -23,7 +26,9 @@ namespace OptiLearn.ViewModels
             get => Content;
             set => this.RaiseAndSetIfChanged(ref Content, value);
         }
+        #endregion
 
+        #region Constructors
         public Course() {
             Name = "Course";
             Content = string.Empty;
@@ -39,5 +44,13 @@ namespace OptiLearn.ViewModels
         {
             return new Course("Wiki", "Sample text.");
         }
+        #endregion
+    }
+
+    public class OngoingCourse
+    {
+        public int CourseId;
+        public DateTime StartDate;
+        public DateTime DueDate;
     }
 }
