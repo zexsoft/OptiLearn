@@ -114,6 +114,11 @@ namespace OptiLearn.Views
             }
         }
 
+        private void ckSession_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+
+        }
+
         // AI MODELS
 
         public string QuestionAI(string query)
