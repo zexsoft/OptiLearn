@@ -172,7 +172,7 @@
 					<Grid Classes="Sidebar" ColumnDefinitions="*, auto" Grid.Column="2" Grid.Row="0" Grid.RowSpan="10"
 						  RowDefinitions="auto, *, auto, auto">
 						<TextBlock Classes="Header" Text="Friends"/>
-						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus, Size=22}"/>
 
 						<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical" Margin="18 4">
 							<HeaderedContentControl Classes="GroupBox">
@@ -299,7 +299,7 @@
 
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
 						<TextBlock Classes="Header" Text="Schedule"/>
-						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus, Size=22}"/>
 
 						<StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5">
@@ -337,7 +337,7 @@
 					
 					<Grid Classes="Sidebar" Grid.Column="1" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto">
 						<TextBlock Classes="Header" Text="Key points"/>
-						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus, Size=22}"/>
 						
 						<StackPanel Grid.ColumnSpan="2" Orientation="Vertical" Grid.Row="1" Margin="0 2" HorizontalAlignment="Stretch">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
