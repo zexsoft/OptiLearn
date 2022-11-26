@@ -16,7 +16,7 @@ namespace OptiLearn.ViewModels
         public string Name = "User";
         public string PasswordHash = "0";
 
-        public RegionInfo Region = RegionInfo.CurrentRegion;
+        public CultureInfo Region = CultureInfo.CurrentCulture;
         public int Points = 0;
 
         public ObservableCollection<OngoingCourse> Courses { get; set; } = new();
@@ -43,7 +43,7 @@ namespace OptiLearn.ViewModels
         public string txRegion
         {
             get => Region.DisplayName;
-            set => this.RaiseAndSetIfChanged(ref Region, new RegionInfo(value));
+            set => this.RaiseAndSetIfChanged(ref Region, new CultureInfo(value));
         }
 
         public int cntPoints

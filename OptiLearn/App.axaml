@@ -9,7 +9,6 @@
     </Application.DataTemplates>
 
 	<Application.Styles>
-		<!--<FluentTheme Mode="Dark"/>-->
 		<themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="Teal"/>
 		<StyleInclude Source="avares://Material.Icons.Avalonia/App.xaml"></StyleInclude>
 
@@ -19,7 +18,9 @@
 				<SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#1B71C1"></SolidColorBrush>
 				<SolidColorBrush x:Key="TertiaryHueMidBrush" Color="#00C2E0"></SolidColorBrush>
 
+				
 				<SolidColorBrush x:Key="MaterialDesignBackground" Color="#151515"></SolidColorBrush>
+				<SolidColorBrush x:Key="MaterialDesignTBackground" Color="#501D1D1D"></SolidColorBrush>
 			</Style.Resources>
 		</Style>
 
