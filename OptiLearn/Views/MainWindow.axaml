@@ -116,7 +116,7 @@
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl x:Name="tMain" TabStripPlacement="Left" SelectedIndex="1" VerticalAlignment="Stretch" IsHitTestVisible="True">
+		<TabControl x:Name="tMain" TabStripPlacement="Left" SelectedIndex="3" VerticalAlignment="Stretch" IsHitTestVisible="True">
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
 				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
@@ -273,7 +273,9 @@
 					
 					<Grid ColumnDefinitions="*" RowDefinitions="auto, *">
 						<TextBlock Classes="Header" Text="Calendar"/>
-						<Calendar Grid.Row="1" SelectionMode="SingleDate" FontFamily="Overpass" FontWeight="ExtraBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+						<Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+							<Calendar SelectionMode="SingleDate" FontFamily="Overpass" FontWeight="ExtraBold"/>
+						</Viewbox>
 					</Grid>
 
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
