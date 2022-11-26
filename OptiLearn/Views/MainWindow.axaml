@@ -110,7 +110,7 @@
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}"/>
 			<Setter Property="BorderThickness" Value="0"/>
 			<Style.Animations>
-				<Animation Duration="0:0:1" Easing="ExponentialEaseInOut">
+				<Animation Duration="0:0:1.5" Delay="1.25" Easing="ExponentialEaseInOut">
 					<KeyFrame Cue="0%">
 						<Setter Property="Opacity" Value="0.0"/>
 					</KeyFrame>
@@ -132,10 +132,13 @@
 		<Style Selector="Calendar">
 			<Setter Property="Foreground" Value="{DynamicResource TertiaryHueMidBrush}"></Setter>
 		</Style>
+		<Style Selector="Button.material-calendar-header-button, Button.material-calendar-nav-button">
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"></Setter>
+		</Style>
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl x:Name="tMain" TabStripPlacement="Left" SelectedIndex="3" VerticalAlignment="Stretch" IsHitTestVisible="True">
+		<TabControl x:Name="tMain" TabStripPlacement="Left" SelectedIndex="0" VerticalAlignment="Stretch" IsHitTestVisible="True">
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
 				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
@@ -144,9 +147,9 @@
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 					
-					<TextBlock Classes="Header" Text="{Binding txName,StringFormat=Hello {}{0}p}}"/>
+					<TextBlock Classes="Header" Text="{Binding txName, StringFormat={}Hello {0}}}"/>
 					<TextBlock Grid.Column="1" FontFamily="Overpass" Foreground="{DynamicResource TertiaryHueMidBrush}"
-							   FontWeight="ExtraBold" FontSize="24" Text="{Binding cntPoints,StringFormat={}{0}p}" Margin="0 7 18 7" VerticalAlignment="Bottom"/>
+							   FontWeight="ExtraBold" FontSize="24" Text="{Binding cntPoints, StringFormat={}{0}p}" Margin="0 7 18 7" VerticalAlignment="Bottom"/>
 					
 					<TextBox Grid.Row="1" Grid.ColumnSpan="2" Watermark="search courses" Margin="18 7">
 						<TextBox.InnerLeftContent>
@@ -172,7 +175,7 @@
 					<Grid Classes="Sidebar" ColumnDefinitions="*, auto" Grid.Column="2" Grid.Row="0" Grid.RowSpan="10"
 						  RowDefinitions="auto, *, auto, auto">
 						<TextBlock Classes="Header" Text="Friends"/>
-						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus, Size=22}"/>
 
 						<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical" Margin="18 4">
 							<HeaderedContentControl Classes="GroupBox">
@@ -308,14 +311,14 @@
 
 						<TextBlock Grid.ColumnSpan="2" Classes="Header" Text="Sessions" Grid.Row="2"/>
 
-						<controls:CircleClockPicker Grid.ColumnSpan="2" Grid.Row="3" Width="240" Height="240" Maximum="120" Minimum="0" StepFrequency="10" Value="0" Margin="0 10"/>
+						<controls:CircleClockPicker Grid.ColumnSpan="2" Grid.Row="3" Width="240" Height="240" Minimum="0" StepFrequency="5" Value="30" Margin="0 10"/>
 
 						<Grid Grid.ColumnSpan="2" Grid.Row="4" ColumnDefinitions="*, auto" Margin="16 0 -4 0" HorizontalAlignment="Stretch">
-							<TextBlock Grid.Column="0" Text="study" Foreground="{DynamicResource MaterialDesignBody}"/>
-							<TextBlock Grid.Column="1" Text="30m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+							<TextBlock x:Name="txSessionType" Grid.Column="0" Text="study" Foreground="{DynamicResource MaterialDesignBody}"/>
+							<TextBlock x:Name="txSessionTime" Grid.Column="1" Text="30m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}"/>
 						</Grid>
 
-						<ProgressBar Grid.ColumnSpan="2" Background="{DynamicResource TertiaryHueMidBrush}" Value="30" Grid.Row="5" Margin="16 2 16 16"/>
+						<ProgressBar x:Name="pbSession" Grid.ColumnSpan="2" Background="{DynamicResource TertiaryHueMidBrush}" Value="30" Grid.Row="5" Margin="16 2 16 16"/>
 					</Grid>
 				</Grid>
 			</TabItem>
@@ -388,7 +391,7 @@
 							<TextBlock Classes="Header" Text="About" Grid.Row="0"/>
 							<TextBlock Classes="Settings" Text="OptiLearn" Grid.Row="1"/>
 							<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}"
-									   Grid.Row="2" Text="created by&#x0a;Pîrvulescu Șerban&#x0a;Lupșe Victor&#x0a;Blicsik Raul&#x0a;Dobîndă Cătălin&#x0a;Foice Rafael" LineHeight="28" FontSize="18" Margin="18 0"/>
+									   Grid.Row="2" Text="AI-powered, distributed social learning platform.&#x0a;&#x0a;created by&#x0a;Pîrvulescu Șerban&#x0a;Lupșe Victor&#x0a;Blicsik Raul&#x0a;Dobîndă Cătălin&#x0a;Foica Rafael" LineHeight="28" FontSize="18" Margin="18 0"/>
 						</Grid>
 					</Grid>
 				</Grid>

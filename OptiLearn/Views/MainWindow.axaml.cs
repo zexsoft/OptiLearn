@@ -20,6 +20,8 @@ using System;
 using System.Globalization;
 using Avalonia.Interactivity;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Timers;
 
 namespace OptiLearn.Views
 {
@@ -27,6 +29,10 @@ namespace OptiLearn.Views
     {
         Course currentCourse;
         User currentUser = new User();
+
+        public int pomodoroCount = 0;
+        public int pomodoroRemaining = 0;
+        public Timer pomodoroTimer;
 
         BertModel modelQuestion;
         ObservableCollection<Conversation> assistantChat { get; set; } = new();
