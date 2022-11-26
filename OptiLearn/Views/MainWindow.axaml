@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:OptiLearn.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
         xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		x:Class="OptiLearn.Views.MainWindow" MinWidth="640" MinHeight="450"
+		x:Class="OptiLearn.Views.MainWindow" MinWidth="640" MinHeight="475"
         Icon="/Assets/optilearn.ico" Title="OptiLearn"
         Background="Transparent" SystemDecorations="Full"
         TransparencyLevelHint="AcrylicBlur"
@@ -25,8 +25,8 @@
 		<Style Selector="TextBlock.Settings">
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
 			<Setter Property="FontFamily" Value="Raleway"/>
-			<Setter Property="FontSize" Value="23"/>
-			<Setter Property="Margin" Value="18 18 18 0"/>
+			<Setter Property="FontSize" Value="28"/>
+			<Setter Property="Margin" Value="18 8 18 6"/>
 		</Style>
 		<Style Selector="TextBlock">
 			<Setter Property="FontFamily" Value="Raleway"/>
@@ -313,12 +313,12 @@
 
 						<TextBlock Grid.ColumnSpan="2" Classes="Header" Text="Sessions" Grid.Row="2"/>
 
-						<Grid Grid.ColumnSpan="2" Grid.Row="3" ColumnDefinitions="*, auto" Margin="16 0" HorizontalAlignment="Stretch">
-							<TextBlock Grid.Column="0" Text="study" Foreground="{DynamicResource MaterialDesignBody}"/>
-							<TextBlock Grid.Column="1" Text="30m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Right"/>
-						</Grid>
+						<controls:CircleClockPicker Grid.ColumnSpan="2" Grid.Row="3" Width="240" Height="240" Maximum="120" Minimum="0" StepFrequency="10" Value="0" Margin="0 10"/>
 
-						<controls:CircleClockPicker Grid.ColumnSpan="2" Grid.Row="4" Width="240" Height="240" Maximum="160" Minimum="0" StepFrequency="15" Value="60" Margin="0 8"/>
+						<Grid Grid.ColumnSpan="2" Grid.Row="4" ColumnDefinitions="*, auto" Margin="16 0 -4 0" HorizontalAlignment="Stretch">
+							<TextBlock Grid.Column="0" Text="study" Foreground="{DynamicResource MaterialDesignBody}"/>
+							<TextBlock Grid.Column="1" Text="30m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+						</Grid>
 
 						<ProgressBar Grid.ColumnSpan="2" Background="{DynamicResource TertiaryHueMidBrush}" Value="30" Grid.Row="5" Margin="16 2 16 16"/>
 					</Grid>
@@ -362,7 +362,12 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-				
+
+					<TextBlock Classes="Header" Text="User"/>
+
+					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
+						<TextBlock Classes="Header" Text="Login"/>
+					</Grid>
 				</Grid>
 			</TabItem>
 
@@ -377,20 +382,19 @@
 					
 					<Grid RowDefinitions="auto,auto,auto,*" >
 						<TextBlock Classes="Header" Text="Settings" Grid.Row="0"/>
-						<ToggleSwitch Margin="20" Content="Dark Theme" Grid.Row="1" ToolTip.Tip="ToggleSwitch with classes &quot;LeftHeader&quot;" />
+						<ToggleSwitch Margin="18" Content="  Switch Theme" Grid.Row="1" ToolTip.Tip="Dark / Light theme"/>
 						
 						<TextBlock Classes="Header" HorizontalAlignment="Left" Text="Technologies" Grid.Row="2"/>
-						<TextBlock Classes="Settings" Text="SERBAN" Grid.Row="3"/>	
+						<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}"
+								   Grid.Row="3" Text="Avalonia UI&#x0a;Zexsoft QSearch&#x0a;BERT Model" LineHeight="28" FontSize="18" Margin="18 0"/>
 					</Grid>
 
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
+					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, auto, *, auto">
 						<Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
-							<TextBlock Classes="Header" Text="About Us" Grid.Row="0"/>
-							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Serban Pirvulescu " Grid.Row="1"/>
-							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Dobinda Catalin " Grid.Row="2"/>
-							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Lupse Victor " Grid.Row="3"/>
-							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Foica Rafael " Grid.Row="4"/>
-							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Bilcsik Raul " Grid.Row="5"/>
+							<TextBlock Classes="Header" Text="About" Grid.Row="0"/>
+							<TextBlock Classes="Settings" Text="OptiLearn" Grid.Row="1"/>
+							<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}"
+									   Grid.Row="2" Text="created by&#x0a;Pîrvulescu Șerban&#x0a;Lupșe Victor&#x0a;Blicsik Raul&#x0a;Dobîndă Cătălin&#x0a;Foice Rafael" LineHeight="28" FontSize="18" Margin="18 0"/>
 						</Grid>
 					</Grid>
 				</Grid>
