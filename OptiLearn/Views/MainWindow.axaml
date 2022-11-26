@@ -270,10 +270,11 @@
 						<Calendar Grid.Row="1" SelectionMode="SingleDate" FontFamily="Overpass" FontWeight="ExtraBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 					</Grid>
 
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*" RowDefinitions="auto, *, auto, auto, auto, auto">
+					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
 						<TextBlock Classes="Header" Text="Schedule"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
 
-						<StackPanel Grid.Row="1" HorizontalAlignment="Stretch">
+						<StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5">
 								<Border Background="{DynamicResource SecondaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
 								<TextBlock Foreground="{DynamicResource SecondaryHueMidBrush}" Text="due" Margin="8 0 5 0" VerticalAlignment="Center"/>
@@ -285,19 +286,19 @@
 								<TextBlock Text="Ancient Egypt" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
 							</StackPanel>
 						</StackPanel>
-						
-						<TextBlock Classes="Header" Text="Sessions" Grid.Row="2" Grid.Column="1"/>
-						
-						<Grid Grid.Row="3" ColumnDefinitions="*, auto" Margin="16 0" HorizontalAlignment="Stretch">
+
+						<TextBlock Grid.ColumnSpan="2" Classes="Header" Text="Sessions" Grid.Row="2"/>
+
+						<Grid Grid.ColumnSpan="2" Grid.Row="3" ColumnDefinitions="*, auto" Margin="16 0" HorizontalAlignment="Stretch">
 							<TextBlock Grid.Column="0" Text="study" Foreground="{DynamicResource MaterialDesignBody}"/>
 							<TextBlock Grid.Column="1" Text="30m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Right"/>
 						</Grid>
 
-						<TimePicker Grid.Row="4">
+						<TimePicker Grid.ColumnSpan="2" Grid.Row="4">
 							
 						</TimePicker>
-						
-						<ProgressBar Background="{DynamicResource TertiaryHueMidBrush}" Value="30" Grid.Row="5" Grid.Column="1" Margin="16 2 16 16"/>
+
+						<ProgressBar Grid.ColumnSpan="2" Background="{DynamicResource TertiaryHueMidBrush}" Value="30" Grid.Row="5" Margin="16 2 16 16"/>
 					</Grid>
 				</Grid>
 			</TabItem>
@@ -309,20 +310,23 @@
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 					
-					<Grid Classes="Sidebar" Grid.Column="1" RowDefinitions="auto, auto, *">
-							<TextBlock Classes="Header" Text="Key points"/>
-							<StackPanel Orientation="Vertical" Grid.Row="1" Margin="0 2" HorizontalAlignment="Stretch">
-								<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-									<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-									<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Margin="8 6" TextWrapping="Wrap" Text="History of the Arabic Peninsula"/>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-									<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-									<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Margin="8 6" TextWrapping="Wrap" Text="Algebra in Islam"/>
-								</StackPanel>
+					<Grid Classes="Sidebar" Grid.Column="1" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto">
+						<TextBlock Classes="Header" Text="Key points"/>
+						<Button Classes="Link" Grid.Column="1" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+						
+						<StackPanel Grid.ColumnSpan="2" Orientation="Vertical" Grid.Row="1" Margin="0 2" HorizontalAlignment="Stretch">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Margin="8 6" TextWrapping="Wrap" Text="History of the Arabic Peninsula"/>
 							</StackPanel>
-							<Button Classes="Outline" Content="write project" HorizontalAlignment="Stretch" Foreground="{DynamicResource PrimaryHueMidBrush}"
-									ToolTip.Tip="Generate project based on key points" Margin="12" Grid.Row="2" VerticalAlignment="Bottom"/>
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" Margin="8 6" TextWrapping="Wrap" Text="Algebra in Islam"/>
+							</StackPanel>
+						</StackPanel>
+						
+						<Button Classes="Outline" Grid.ColumnSpan="2" Content="write project" HorizontalAlignment="Stretch" Foreground="{DynamicResource PrimaryHueMidBrush}"
+								ToolTip.Tip="Generate project based on key points" Margin="12" Grid.Row="2" VerticalAlignment="Bottom"/>
 					</Grid>
 				</Grid>
 			</TabItem>
