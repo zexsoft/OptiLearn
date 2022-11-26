@@ -12,7 +12,7 @@
         Icon="/Assets/optilearn.ico" Title="OptiLearn"
         Background="Transparent" SystemDecorations="Full"
         TransparencyLevelHint="AcrylicBlur"
-        ExtendClientAreaToDecorationsHint="True">
+        ExtendClientAreaToDecorationsHint="False">
 
 	<Window.Styles>
 		<Style Selector="TextBlock.Header">
@@ -354,7 +354,19 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-				
+
+					<Grid RowDefinitions="auto,auto,auto" >
+						<TextBox Margin="20" Classes="filled dense" UseFloatingWatermark="False" Watermark="Username" Grid.Row="0" />
+						<TextBox Margin="20" Classes="filled dense" UseFloatingWatermark="False" Watermark="Password" Grid.Row="1" />
+						<ComboBox Classes="Outline" Grid.Row="2">
+							<TextBlock Text="Item 1" />
+							<TextBlock Text="Item 2" />
+							<TextBlock Text="Item 3" />
+							<TextBlock Text="Item 4" />
+						</ComboBox>
+					</Grid>
+					
+					
 				</Grid>
 			</TabItem>
 
@@ -369,7 +381,7 @@
 					
 					<Grid RowDefinitions="auto,auto,auto,*" >
 						<TextBlock Classes="Header" Text="Settings" Grid.Row="0"/>
-						<ToggleSwitch Margin="20" Content="Dark Theme" Grid.Row="1" ToolTip.Tip="ToggleSwitch with classes &quot;LeftHeader&quot;" />
+						<ToggleSwitch Margin="20" Content="  Dark Theme" Grid.Row="1"/>
 						
 						<TextBlock Classes="Header" HorizontalAlignment="Left" Text="Technologies" Grid.Row="2"/>
 						<TextBlock Classes="Settings" Text="SERBAN" Grid.Row="3"/>	
