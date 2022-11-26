@@ -113,6 +113,9 @@
 		<Style Selector="TabControl /template/ Panel">
 			<Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
 		</Style>
+		<Style Selector="Calendar">
+			<Setter Property="Foreground" Value="{DynamicResource TertiaryHueMidBrush}"></Setter>
+		</Style>
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
