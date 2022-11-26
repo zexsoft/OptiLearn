@@ -22,6 +22,12 @@
 			<Setter Property="FontWeight" Value="ExtraBold"/>
 			<Setter Property="Margin" Value="18 18 18 0"/>
 		</Style>
+		<Style Selector="TextBlock.Settings">
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontSize" Value="23"/>
+			<Setter Property="Margin" Value="18 18 18 0"/>
+		</Style>
 		<Style Selector="TextBlock">
 			<Setter Property="FontFamily" Value="Raleway"/>
 			<Setter Property="FontWeight" Value="Light"/>
@@ -356,13 +362,7 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-
-					<TextBlock Classes="Header" Text="User"/>
-
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
-						<TextBlock Classes="Header" Text="Login"/>
-						
-					</Grid>
+				
 				</Grid>
 			</TabItem>
 
@@ -372,12 +372,26 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-
+					
 					<TextBlock Classes="Header" Text="Settings"/>
+					
+					<Grid RowDefinitions="auto,auto,auto,*" >
+						<TextBlock Classes="Header" Text="Settings" Grid.Row="0"/>
+						<ToggleSwitch Margin="20" Content="Dark Theme" Grid.Row="1" ToolTip.Tip="ToggleSwitch with classes &quot;LeftHeader&quot;" />
+						
+						<TextBlock Classes="Header" HorizontalAlignment="Left" Text="Technologies" Grid.Row="2"/>
+						<TextBlock Classes="Settings" Text="SERBAN" Grid.Row="3"/>	
+					</Grid>
 
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
-						<TextBlock Classes="Header" Text="About"/>
-						
+						<Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
+							<TextBlock Classes="Header" Text="About Us" Grid.Row="0"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Serban Pirvulescu " Grid.Row="1"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Dobinda Catalin " Grid.Row="2"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Lupse Victor " Grid.Row="3"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Foica Rafael " Grid.Row="4"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Bilcsik Raul " Grid.Row="5"/>
+						</Grid>
 					</Grid>
 				</Grid>
 			</TabItem>
