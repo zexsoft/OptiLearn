@@ -44,6 +44,11 @@ namespace OptiLearn.ViewModels
         {
             return new Course("Wiki", "Sample text.");
         }
+
+        public Course Clone()
+        {
+            return MemberwiseClone() as Course;
+        }
         #endregion
     }
 
