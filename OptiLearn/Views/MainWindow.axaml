@@ -386,10 +386,25 @@
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 
-					<TextBlock Classes="Header" Text="User"/>
+					<Grid RowDefinitions="auto,100,auto,auto" ColumnDefinitions="300,300" >
+						<TextBlock Classes="Header" Text="User" Grid.Row="0"/>
 
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
-						<TextBlock Classes="Header" Text="Login"/>
+						<TextBox Margin="20"  UseFloatingWatermark="False" Watermark="Username" Grid.Row="1" />
+						<TextBox Margin="20"  UseFloatingWatermark="False" Watermark="Password" Grid.Row="2" />
+						<ComboBox Margin="20"  Classes="Outline" Grid.Row="3">
+							<TextBlock Text="Item 1" />
+							<TextBlock Text="Item 2" />
+							<TextBlock Text="Item 3" />
+							<TextBlock Text="Item 4" />
+						</ComboBox>
+					</Grid>
+
+					<Grid  Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto,auto,auto,*,auto">
+						<TextBlock Classes="Header" Text="Login" Grid.Row="0"/>
+						<TextBox Margin="18"  UseFloatingWatermark="False" Watermark="Username" Grid.Row="1" />
+						<TextBox Margin="18"  UseFloatingWatermark="False" Watermark="Password" Grid.Row="2" />
+						<Button Margin="18" Classes="Outline" Grid.Row="4"  Content="login"
+								HorizontalAlignment="Left"  Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 					</Grid>
 				</Grid>
 			</TabItem>
