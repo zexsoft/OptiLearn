@@ -45,6 +45,16 @@
 			<Setter Property="FontWeight" Value="Light"/>
 			<Setter Property="FontSize" Value="14"/>
 		</Style>
+		<Style Selector="TextBox.Header">
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Overpass"/>
+			<Setter Property="FontSize" Value="40"/>
+			<Setter Property="FontWeight" Value="ExtraBold"/>
+			<Setter Property="Margin" Value="18 0 18 0"/>
+			<Setter Property="CornerRadius" Value="0"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Height" Value="57"/>
+		</Style>
 		<Style Selector="Button">
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="CornerRadius" Value="16"/>
@@ -139,9 +149,9 @@
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl x:Name="tMain" TabStripPlacement="Left" SelectedIndex="4" VerticalAlignment="Stretch" IsHitTestVisible="True">
+		<TabControl TabStripPlacement="Left" SelectedIndex="4" VerticalAlignment="Stretch" IsHitTestVisible="True">
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
-				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
+				<Grid x:Name="tMain" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="auto"></ColumnDefinition>
@@ -195,8 +205,8 @@
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="{avalonia:MaterialIconExt Kind=BookOpenPageVariantOutline, Size=28}" x:Name="tCourses" IsHitTestVisible="True">
-				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, *" x:Name="grCourses">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=BookOpenPageVariantOutline, Size=28}" IsHitTestVisible="True">
+				<Grid x:Name="tCourses" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, *">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -223,7 +233,7 @@
 							</ListBox.ItemTemplate>
 						</ListBox>
 						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12 0" HorizontalAlignment="Stretch">
-							<Button Content="summary" ToolTip.Tip="Generate summary of prompt"  Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+							<Button x:Name="btSummarize" Content="summary" ToolTip.Tip="Generate summary of prompt"  Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 							<Button x:Name="btNarrator" ToolTip.Tip="Start / Stop naration" Content="narrator" Click="btNarrator_Click" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
 						</StackPanel>
 						<TextBox x:Name="tbAssistant" KeyDown="tbAssistant_KeyDown" Grid.Row="3" Watermark="ask anything" Margin="16 10 16 12" HorizontalAlignment="Stretch">
@@ -238,7 +248,7 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=TestTube, Size=28}" IsHitTestVisible="True">
-				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *, auto">
+				<Grid x:Name="tExam" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *, auto">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -281,7 +291,7 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=CalendarText, Size=28}" IsHitTestVisible="True">
-				<Grid Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tPlanning" Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -324,27 +334,33 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=NotebookOutline, Size=28}" IsHitTestVisible="True">
-				<Grid RowDefinitions="auto, *" Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tResearch" RowDefinitions="auto, *" Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-					<TextBlock Classes="Header" Text="Research"/>
+					<TextBox Classes="Header" Text="{Binding txName, Mode=TwoWay}" HorizontalAlignment="Left"/>
 
 					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
-						<TextBox TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}" Text="Research" TextWrapping="Wrap"
+						<TextBox TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent, Mode=TwoWay}" TextWrapping="Wrap"
 								 FontSize="18" AcceptsReturn="True" VerticalAlignment="Top" Margin="18 0" BorderThickness="0"/>
 					</ScrollViewer>
 					
 					<Grid Classes="Sidebar" Grid.RowSpan="2" Grid.Column="1" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto">
 						<TextBlock Classes="Header" Text="Key points"/>
-						<Button Classes="Link" Grid.Column="1" ToolTip.Tip="Add a new Key Point " Content="{avalonia:MaterialIconExt Kind=Plus}"/>
+						<Button x:Name="btAddKey" Classes="Link" Click="btAddKey_Click" Grid.Column="1" ToolTip.Tip="Add a new Key Point " Content="{avalonia:MaterialIconExt Kind=Plus}"/>
 						<ListBox x:Name="lbKeyPoints" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4">
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
 										<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-										<TextBox Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="{Binding}"/>
+										<TextBox Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="{Binding}">
+											<TextBox.InnerLeftContent>
+												<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+													<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Idea" Width="20" Height="20"/>
+												</Border>
+											</TextBox.InnerLeftContent>
+										</TextBox>
 									</StackPanel>
 								</DataTemplate>
 							</ListBox.ItemTemplate>
@@ -364,7 +380,7 @@
 			<!--Settings separate, will contain theme options, copyright-->
 
 			<TabItem Header="{avalonia:MaterialIconExt Kind=User, Size=28}" IsHitTestVisible="True">
-				<Grid Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tUser" Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -394,7 +410,7 @@
 			</TabItem>
 
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Settings, Size=28}" IsHitTestVisible="True">
-				<Grid Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tSettings" Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
