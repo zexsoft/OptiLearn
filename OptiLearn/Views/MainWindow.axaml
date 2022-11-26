@@ -10,15 +10,15 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		x:Class="OptiLearn.Views.MainWindow" MinWidth="640" MinHeight="450"
         Icon="/Assets/optilearn.ico" Title="OptiLearn"
-        Background="Transparent" ExtendClientAreaChromeHints="SystemChrome"
+        Background="Transparent" SystemDecorations="Full"
         TransparencyLevelHint="AcrylicBlur"
-        ExtendClientAreaToDecorationsHint="False">
+        ExtendClientAreaToDecorationsHint="True">
 
 	<Window.Styles>
 		<Style Selector="TextBlock.Header">
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
 			<Setter Property="FontFamily" Value="Overpass"/>
-			<Setter Property="FontSize" Value="38"/>
+			<Setter Property="FontSize" Value="40"/>
 			<Setter Property="FontWeight" Value="ExtraBold"/>
 			<Setter Property="Margin" Value="18 18 18 0"/>
 		</Style>
@@ -105,33 +105,35 @@
 			<Setter Property="FontWeight" Value="Light"/>
 			<Setter Property="Foreground" Value="White"/>
 		</Style>
-		<Style Selector="CheckBox:checked > TextBlock">
-		</Style>
 		<Style Selector="Button.Subject">
 			<Setter Property="CornerRadius" Value="500"/>
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}"/>
+			<Setter Property="BorderThickness" Value="0"/>
 		</Style>
 		<Style Selector="TabItem">
-			<Setter Property="MinWidth" Value="45"/>
+			<Setter Property="MinWidth" Value="48"/>
 		</Style>
 		<Style Selector="TabItem:selected">
-			<Setter Property="Background" Value="#5000007F"/>
+			<Setter Property="Background" Value="#7000005F"/>
+		</Style>
+		<Style Selector="TabControl /template/ Panel">
+			<Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
 		</Style>
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl TabStripPlacement="Left" SelectedIndex="1" VerticalAlignment="Stretch" IsHitTestVisible="True">
-			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D" RowDefinitions="auto, auto, *">
+		<TabControl x:Name="tMain" TabStripPlacement="Left" SelectedIndex="3" VerticalAlignment="Stretch" IsHitTestVisible="True">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="auto"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 					
-					<TextBlock Classes="Header" Text="Hello, Victor"/>
+					<TextBlock Classes="Header" Text="{Binding txName,StringFormat=Hello {}{0}p}}"/>
 					<TextBlock Grid.Column="1" FontFamily="Overpass" Foreground="{DynamicResource TertiaryHueMidBrush}"
-							   FontWeight="ExtraBold" FontSize="24" Text="738p" Margin="0 7 18 7" VerticalAlignment="Bottom"/>
+							   FontWeight="ExtraBold" FontSize="24" Text="{Binding cntPoints,StringFormat={}{0}p}" Margin="0 7 18 7" VerticalAlignment="Bottom"/>
 					
 					<TextBox Grid.Row="1" Grid.ColumnSpan="2" Watermark="search courses" Margin="18 7">
 						<TextBox.InnerLeftContent>
@@ -176,8 +178,8 @@
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="{avalonia:MaterialIconExt Kind=BookOpenPageVariantOutline, Size=26}" x:Name="tCourses" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D" RowDefinitions="auto, *" x:Name="grCourses">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=BookOpenPageVariantOutline, Size=28}" x:Name="tCourses" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, *" x:Name="grCourses">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -185,30 +187,27 @@
 					<TextBlock Classes="Header" Text="{Binding txName}"/>
 
 					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-						<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent}" FontSize="16" Margin="18 0"/>
+						<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent}" FontSize="18" Margin="18 0"/>
 					</ScrollViewer>
 					
 					<Grid Classes="Sidebar" Grid.Column="1" Grid.Row="0" Grid.RowSpan="10"
 						  RowDefinitions="auto, *, auto, auto">
 						<TextBlock Classes="Header" Text="Assistant"/>
-						<StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock Foreground="{DynamicResource TertiaryHueMidBrush}" TextWrapping="Wrap" Text="Hello! Need some help?" Margin="8 8 8 7" VerticalAlignment="Center"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-								<TextBlock Foreground="{DynamicResource MaterialDesignBody}" TextWrapping="Wrap" Text="Who started WW1?" Margin="8 8 8 7" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-								<Border Background="{DynamicResource MaterialDesignBody}" Height="20" Width="7" VerticalAlignment="Center" HorizontalAlignment="Right" CornerRadius="3 0 0 3"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-								<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-								<TextBlock x:Name="txResponse" IsVisible="False" Foreground="{DynamicResource TertiaryHueMidBrush}" TextWrapping="Wrap" Text="Hello! Need some help?" Margin="8 8 8 7" VerticalAlignment="Center"/>
-								<ProgressBar x:Name="pbResponse" Width="150" Foreground="{DynamicResource TertiaryHueMidBrush}" Background="Transparent" IsIndeterminate="True" Margin="8 0"/>
-							</StackPanel>
-						</StackPanel>
+
+						<ListBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4"
+								 x:Name="lbChat" Padding="0">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid ColumnDefinitions="auto, *" HorizontalAlignment="Stretch">
+										<Border Background="{Binding SideColor}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
+										<TextBlock Grid.Column="1" Foreground="{Binding MaterialDesignBody}" TextWrapping="Wrap" Text="{Binding txText}" Margin="8 8 8 7" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+									</Grid>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
 						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12 0" HorizontalAlignment="Stretch">
 							<Button Content="summary" Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-							<Button Content="narrator" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
+							<Button x:Name="btNarrator" Content="narrator" Click="btNarrator_Click" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
 							<Button Content="create" Margin="4 0" BorderBrush="{DynamicResource TertiaryHueMidBrush}" Foreground="{DynamicResource TertiaryHueMidBrush}"/>
 						</StackPanel>
 						<TextBox x:Name="tbAssistant" KeyDown="tbAssistant_KeyDown" Grid.Row="3" Watermark="ask anything" Margin="16 10 16 12" HorizontalAlignment="Stretch">
@@ -222,16 +221,16 @@
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="{avalonia:MaterialIconExt Kind=TestTube, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D" RowDefinitions="auto, auto, *, auto">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=TestTube, Size=28}" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *, auto">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-					<TextBlock Classes="Header" Text="Question #3"/>
-					<TextBlock Grid.Row="1" Foreground="{DynamicResource MaterialDesignBody}" Text="Who started World War 1?" FontSize="24" Margin="18 0"/>
+					<TextBlock x:Name="cntQuestion" Classes="Header" Text="Question #3"/>
+					<TextBlock x:Name="txQuestion" Grid.Row="1" Foreground="{DynamicResource MaterialDesignBody}" Text="Who started World War 1?" FontSize="24" Margin="18 0"/>
 
-					<TextBox Grid.Row="3" Watermark="answer" Margin="16 10 16 12" AcceptsReturn="True" Height="42" HorizontalAlignment="Stretch">
+					<TextBox x:Name="tbAnswer" Grid.Row="3" Watermark="answer" Margin="16 10 16 12" AcceptsReturn="True" Height="42" HorizontalAlignment="Stretch">
 						<TextBox.InnerLeftContent>
 							<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
 								<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="NotesOutline" Width="20" Height="20"/>
@@ -262,17 +261,17 @@
 						<TextBlock Grid.Row="2" Classes="Header" Text="Time"/>
 
 						<Grid Grid.Row="3" ColumnDefinitions="*, auto" Margin="16 0" HorizontalAlignment="Stretch">
-							<TextBlock Grid.Column="0" Text="66% complete" Foreground="{DynamicResource MaterialDesignBody}"/>
-							<TextBlock Grid.Column="1" Text="17m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Right"/>
+							<TextBlock x:Name="txExamCompletion" Grid.Column="0" Text="66% complete" Foreground="{DynamicResource MaterialDesignBody}"/>
+							<TextBlock x:Name="txExamTime" Grid.Column="1" Text="17m left" FontFamily="Overpass" FontWeight="ExtraBold" Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Right"/>
 						</Grid>
 						
-						<ProgressBar Background="{DynamicResource PrimaryHueMidBrush}" Value="30" Grid.Row="4" Grid.Column="1" Margin="16 2 16 16"/>
+						<ProgressBar x:Name="pbExamTime" Background="{DynamicResource PrimaryHueMidBrush}" Value="30" Grid.Row="4" Grid.Column="1" Margin="16 2 16 16"/>
 					</Grid>
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="{avalonia:MaterialIconExt Kind=CalendarText, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=CalendarText, Size=28}" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -280,7 +279,9 @@
 					
 					<Grid ColumnDefinitions="*" RowDefinitions="auto, *">
 						<TextBlock Classes="Header" Text="Calendar"/>
-						<Calendar Grid.Row="1" SelectionMode="SingleDate" FontFamily="Overpass" FontWeight="ExtraBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+						<Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+							<Calendar SelectionMode="SingleDate" FontFamily="Overpass" FontWeight="ExtraBold"/>
+						</Viewbox>
 					</Grid>
 
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
@@ -316,8 +317,8 @@
 				</Grid>
 			</TabItem>
 			
-			<TabItem Header="{avalonia:MaterialIconExt Kind=NotebookOutline, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=NotebookOutline, Size=28}" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -347,6 +348,12 @@
 			<!--User must be able to select region for TTS, Wiki source-->
 			<!--Settings separate, will contain theme options, copyright-->
 
+			<TabItem Header="{avalonia:MaterialIconExt Kind=User, Size=28}" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
 			<TabItem Header="{avalonia:MaterialIconExt Kind=UserCircle, Size=26}" IsHitTestVisible="True">
 				<Grid Background="#501D1D1D" ColumnDefinitions ="2* , *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
 					<TextBlock Classes="Header" Text="User" Grid.Column ="0" Grid.Row="0" Margin="10"></TextBlock>
@@ -369,8 +376,8 @@
 				</Grid>
 			</TabItem>
 
-			<TabItem Header="{avalonia:MaterialIconExt Kind=Settings, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D">
+			<TabItem Header="{avalonia:MaterialIconExt Kind=Settings, Size=28}" IsHitTestVisible="True">
+				<Grid Background="{DynamicResource MaterialDesignTBackground}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>

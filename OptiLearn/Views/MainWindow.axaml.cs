@@ -1,27 +1,35 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Threading;
 using Material.Styles.Themes;
 using Microsoft.ML.Models.BERT;
 using OptiLearn.ViewModels;
+using ReactiveUI;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Zexsoft;
-using Color = Avalonia.Media.Color;
+using System.Speech.Synthesis;
+using System;
+using System.Globalization;
+using Avalonia.Interactivity;
+using System.Threading.Tasks;
 
 namespace OptiLearn.Views
 {
     public partial class MainWindow : Window
     {
         Course currentCourse;
-        BertModel modelQuestion;
+        User currentUser = new User();
 
-        List<Conversation> assistantChat;
+        BertModel modelQuestion;
+        ObservableCollection<Conversation> assistantChat { get; set; } = new();
 
         public MainWindow()
         {
@@ -31,7 +39,9 @@ namespace OptiLearn.Views
 
             // DataContext
             grCourses.DataContext = currentCourse;
-
+            tMain.DataContext = currentUser;
+            lbChat.Items = assistantChat;
+            
             // Models
             if (File.Exists("Model/bert-question.onnx"))        // BERT Question
             {
@@ -40,32 +50,65 @@ namespace OptiLearn.Views
                     VocabularyFile = "Model/vocab.txt",
                     ModelPath = "Model/bert-question.onnx"
                 };
-                txResponse.Text = tCourses.Parent.Name;
 
                 modelQuestion = new BertModel(modelCfgQuestion);
                 modelQuestion.Initialize();
             }
-            else txResponse.Text = "AI Assistant unavailable.";
+            else
+            {
+                tbAssistant.Text = "AI Assistant unavailable.";
+                tbAssistant.IsEnabled = false;
+            }
         }
 
         private void tbAssistant_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                pbResponse.IsVisible = true;
-                txResponse.IsVisible = false;
+                //pbResponse.IsVisible = true;
+                //txResponse.IsVisible = false;
+                assistantChat.Add(new Conversation(tbAssistant.Text, true));
+
                 Dispatcher.UIThread.Post(() => { }, DispatcherPriority.MaxValue);
 
-                txResponse.Text = QuestionAI(tbAssistant.Text);
+                //txResponse.Text = ;
+                assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
 
-                pbResponse.IsVisible = false;
-                txResponse.IsVisible = true;
-
+                lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
                 tbAssistant.Text = string.Empty;
 
                 e.Handled = true;
             }
         }
+
+        SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+
+        private void btNarrator_Click(object sender, RoutedEventArgs e)
+        {
+            if (synthesizer.GetCurrentlySpokenPrompt() != null)
+            {
+                synthesizer.SpeakAsyncCancelAll();
+                return;
+            }
+
+            try
+            {
+                synthesizer.SetOutputToDefaultAudioDevice();
+
+                PromptBuilder builder = new PromptBuilder();
+                builder.StartVoice(currentUser.Region);
+                builder.AppendText(currentCourse.Content);
+                builder.EndVoice();
+
+                synthesizer.SpeakAsync(builder);
+            }
+            catch
+            {
+                tbAssistant.Text = "Narrator is not supported on your platform.";
+            }
+        }
+
+        // AI MODELS
 
         public string QuestionAI(string query)
         {
@@ -81,11 +124,10 @@ namespace OptiLearn.Views
         }
     }
 
-    public class Conversation
+    public class Conversation : ViewModelBase
     {
         public string Text;
 
-        public bool Loading = true;
         public bool Side;
 
         public Conversation(string text, bool side) 
@@ -93,14 +135,20 @@ namespace OptiLearn.Views
             Text = text;
 
             Side = side;
-            Loading = side;
         }
 
-        public Color SideColor
+        public string txText
         {
-            get => Side ? (Color)Application.Current.Resources["MaterialDesignBody"] : (Color)Application.Current.Resources["TertiaryHueMidBrush"];
+            get => Text;
+            set => this.RaiseAndSetIfChanged(ref Text, value);
         }
 
+        public SolidColorBrush? SideColor
+            => Side ? (SolidColorBrush)Application.Current.FindResource("MaterialDesignBody") : (SolidColorBrush)Application.Current.FindResource("TertiaryHueMidBrush");
 
+        public HorizontalAlignment Orientation
+        {
+            get => Side ? HorizontalAlignment.Right : HorizontalAlignment.Left;
+        }
     }
 }
