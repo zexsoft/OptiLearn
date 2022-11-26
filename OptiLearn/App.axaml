@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:OptiLearn"
 			 xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+			 xmlns:assists="clr-namespace:Material.Styles.Assists"
              x:Class="OptiLearn.App">
     <Application.DataTemplates>
         <local:ViewLocator/>
@@ -20,6 +21,12 @@
 
 				<SolidColorBrush x:Key="MaterialDesignBackground" Color="#151515"></SolidColorBrush>
 			</Style.Resources>
+		</Style>
+
+		<Style>
+			<Style Selector="TabControl /template/ WrapPanel">
+				<Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+			</Style>
 		</Style>
 	</Application.Styles>
 </Application>
