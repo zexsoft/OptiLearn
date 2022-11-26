@@ -354,25 +354,7 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-			<TabItem Header="{avalonia:MaterialIconExt Kind=UserCircle, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D" ColumnDefinitions ="2* , *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
-					<TextBlock Classes="Header" Text="User" Grid.Column ="0" Grid.Row="0" Margin="10"></TextBlock>
-					<TextBlock Classes="Header" Text="Login" Grid.Column="1" Background="Black" Grid.Row="0" Margin="10"></TextBlock>
-					<TextBox Watermark="Username:Rafael" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10"></TextBox>
-					<TextBox Watermark="Password" PasswordChar="*" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="10"></TextBox>
-					<Expander VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Margin="10">
-
-						<Expander.Header>
-							<Label Content="Languages"></Label>
-							
-						</Expander.Header>
-
-						<StackPanel>
-							<Label Content="Espana"></Label>
-							<Label Content="English"></Label>
-							<Label Content="Deutsch"></Label>
-						</StackPanel>
-					</Expander>
+				
 				</Grid>
 			</TabItem>
 
@@ -392,19 +374,16 @@
 						<TextBlock Classes="Header" HorizontalAlignment="Left" Text="Technologies" Grid.Row="2"/>
 						<TextBlock Classes="Settings" Text="SERBAN" Grid.Row="3"/>	
 					</Grid>
-						
 
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
 						<Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
-						<TextBlock Classes="Header" Text="About Us" Grid.Row="0"/>
+							<TextBlock Classes="Header" Text="About Us" Grid.Row="0"/>
 							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Serban Pirvulescu " Grid.Row="1"/>
 							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Dobinda Catalin " Grid.Row="2"/>
 							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Lupse Victor " Grid.Row="3"/>
 							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Foica Rafael " Grid.Row="4"/>
 							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Bilcsik Raul " Grid.Row="5"/>
 						</Grid>
-						
-						
 					</Grid>
 				</Grid>
 			</TabItem>
