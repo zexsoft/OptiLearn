@@ -22,6 +22,12 @@
 			<Setter Property="FontWeight" Value="ExtraBold"/>
 			<Setter Property="Margin" Value="18 18 18 0"/>
 		</Style>
+		<Style Selector="TextBlock.Settings">
+			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+			<Setter Property="FontFamily" Value="Raleway"/>
+			<Setter Property="FontSize" Value="23"/>
+			<Setter Property="Margin" Value="18 18 18 0"/>
+		</Style>
 		<Style Selector="TextBlock">
 			<Setter Property="FontFamily" Value="Raleway"/>
 			<Setter Property="FontWeight" Value="Light"/>
@@ -342,18 +348,24 @@
 			<!--Settings separate, will contain theme options, copyright-->
 
 			<TabItem Header="{avalonia:MaterialIconExt Kind=UserCircle, Size=26}" IsHitTestVisible="True">
-				<Grid Background="#501D1D1D">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*"></ColumnDefinition>
-						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
-					</Grid.ColumnDefinitions>
+				<Grid Background="#501D1D1D" ColumnDefinitions ="2* , *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+					<TextBlock Classes="Header" Text="User" Grid.Column ="0" Grid.Row="0" Margin="10"></TextBlock>
+					<TextBlock Classes="Header" Text="Login" Grid.Column="1" Background="Black" Grid.Row="0" Margin="10"></TextBlock>
+					<TextBox Watermark="Username:Rafael" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10"></TextBox>
+					<TextBox Watermark="Password" PasswordChar="*" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="10"></TextBox>
+					<Expander VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Margin="10">
 
-					<TextBlock Classes="Header" Text="User"/>
+						<Expander.Header>
+							<Label Content="Languages"></Label>
+							
+						</Expander.Header>
 
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
-						<TextBlock Classes="Header" Text="Login"/>
-						
-					</Grid>
+						<StackPanel>
+							<Label Content="Espana"></Label>
+							<Label Content="English"></Label>
+							<Label Content="Deutsch"></Label>
+						</StackPanel>
+					</Expander>
 				</Grid>
 			</TabItem>
 
@@ -363,11 +375,28 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-
+					
 					<TextBlock Classes="Header" Text="Settings"/>
+					
+					<Grid RowDefinitions="auto,auto,auto,*" >
+						<TextBlock Classes="Header" Text="Settings" Grid.Row="0"/>
+						<ToggleSwitch Margin="20" Content="Dark Theme" Grid.Row="1" ToolTip.Tip="ToggleSwitch with classes &quot;LeftHeader&quot;" />
+						
+						<TextBlock Classes="Header" HorizontalAlignment="Left" Text="Technologies" Grid.Row="2"/>
+						<TextBlock Classes="Settings" Text="SERBAN" Grid.Row="3"/>	
+					</Grid>
+						
 
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
-						<TextBlock Classes="Header" Text="About"/>
+						<Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
+						<TextBlock Classes="Header" Text="About Us" Grid.Row="0"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Serban Pirvulescu " Grid.Row="1"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Dobinda Catalin " Grid.Row="2"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Lupse Victor " Grid.Row="3"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Foica Rafael " Grid.Row="4"/>
+							<TextBlock Classes="Settings" Margin="15" FontSize="23" Text="Bilcsik Raul " Grid.Row="5"/>
+						</Grid>
+						
 						
 					</Grid>
 				</Grid>
