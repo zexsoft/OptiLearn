@@ -38,7 +38,7 @@ namespace OptiLearn.Views
         public Timer pomodoroTimer;
 
         BertQuestionModel modelQuestion;
-        BertSummaryModel modelSummarize;
+        BartSummaryModel modelSummarize;
         ObservableCollection<Conversation> assistantChat { get; set; } = new();
 
 
@@ -59,14 +59,22 @@ namespace OptiLearn.Views
             // Models
             if (File.Exists("Model/bert-question.onnx"))        // BERT Question
             {
-                BertQuestionModelConfiguration modelCfgQuestion = new BertQuestionModelConfiguration()
+                try
                 {
-                    VocabularyFile = "Model/vocab.txt",
-                    ModelPath = "Model/bert-question.onnx"
-                };
+                    BertQuestionModelConfiguration modelCfgQuestion = new BertQuestionModelConfiguration()
+                    {
+                        VocabularyFile = "Model/vocab.txt",
+                        ModelPath = "Model/bert-question.onnx"
+                    };
 
-                modelQuestion = new BertQuestionModel(modelCfgQuestion);
-                modelQuestion.Initialize();
+                    modelQuestion = new BertQuestionModel(modelCfgQuestion);
+                    modelQuestion.Initialize();
+                }
+                catch
+                {
+                    tbAssistant.Text = "AI Assistant corrupted.";
+                    tbAssistant.IsEnabled = false;
+                }
             }
             else
             {
@@ -74,16 +82,17 @@ namespace OptiLearn.Views
                 tbAssistant.IsEnabled = false;
             }
 
-            if (File.Exists("Model/bert-summarize.onnx"))        // mBART Summarize
+            if (File.Exists("Model/bart-summarize.onnx"))        // mBART Summarize
             {
-                BertSummarizeModelConfiguration modelCfgQuestion = new BertSummarizeModelConfiguration()
+                try
                 {
-                    VocabularyFile = "Model/vocab.txt",
-                    ModelPath = "Model/bart-summarize.onnx"
-                };
-
-                modelSummarize = new BertSummaryModel(modelCfgQuestion);
-                modelSummarize.Initialize();
+                    modelSummarize = new BartSummaryModel("Model/vocab.txt", "Model/bart-summarize.onnx");
+                    modelSummarize.Initialize();
+                }
+                catch
+                {
+                    btSummarize.IsEnabled = false;
+                }
             }
             else
             {

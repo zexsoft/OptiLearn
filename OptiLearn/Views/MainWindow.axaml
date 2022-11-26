@@ -412,15 +412,15 @@
 								   Grid.Row="3" Text="Avalonia UI&#x0a;Zexsoft QSearch&#x0a;BERT AI Model" LineHeight="28" FontSize="18" Margin="18 0"/>
 					</Grid>
 
-					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, auto, auto, *, auto">
-						<Grid RowDefinitions="auto,auto,auto,auto,auto,auto">
-							<TextBlock Classes="Header" Text="About" Grid.Row="0"/>
-							<TextBlock Classes="Settings" Text="OptiLearn" Foreground="{DynamicResource SecondaryHueMidBrush}" Grid.Row="1"/>
-							<TextBlock TextAlignment="Justify" Foreground="{DynamicResource PrimaryHueMidBrush}"
-									   Grid.Row="2" Text="AI-powered, distributed social learning platform." LineHeight="28" FontSize="18" Margin="18 0"/>
-							<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}"
-									   Grid.Row="3" Text="created by&#x0a;Pîrvulescu Șerban&#x0a;Lupșe Victor&#x0a;Blicsik Raul&#x0a;Dobîndă Cătălin&#x0a;Foica Rafael" LineHeight="28" FontSize="18" Margin="18 18 18 0"/>
-						</Grid>
+					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto,auto,auto,auto,*,auto">
+						<TextBlock Classes="Header" Text="About"/>
+						<TextBlock Classes="Settings" Text="OptiLearn" Foreground="{DynamicResource SecondaryHueMidBrush}" Grid.Row="1"/>
+						<TextBlock TextAlignment="Justify" Foreground="{DynamicResource PrimaryHueMidBrush}"
+									Grid.Row="2" Text="AI-powered, distributed social learning platform." LineHeight="28" FontSize="18" Margin="18 0"/>
+						<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}"
+									Grid.Row="3" Text="created by&#x0a;Pîrvulescu Șerban&#x0a;Lupșe Victor&#x0a;Blicsik Raul&#x0a;Dobîndă Cătălin&#x0a;Foica Rafael" LineHeight="28" FontSize="18" Margin="18 18 18 0"/>
+
+						<Image Grid.Row="5" Source="/Assets/copyright.png" Height="32" Margin="12" HorizontalAlignment="Left"/>
 					</Grid>
 				</Grid>
 			</TabItem>
