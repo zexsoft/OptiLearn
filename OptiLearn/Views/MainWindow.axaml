@@ -162,7 +162,7 @@
 	</Window.Styles>
 
 	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl TabStripPlacement="Left" SelectedIndex="5" VerticalAlignment="Stretch" IsHitTestVisible="True">
+		<TabControl TabStripPlacement="Left" SelectedIndex="0" VerticalAlignment="Stretch" IsHitTestVisible="True">
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
 				<Grid x:Name="tMain" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
@@ -187,7 +187,7 @@
 						<Canvas Width="275" Height="250">
 							<Button Classes="Subject" Background="{DynamicResource TertiaryHueMidBrush}" Content="Science"
 									Canvas.Top="50" Canvas.Left="50" Height="90" Width="90"/>
-							<Button Classes="Subject" Background="{DynamicResource PrimaryHueMidBrush}" Content="Literature"
+							<Button Classes="Subject" Background="{DynamicResource PrimaryHueMidBrush}" Content="History"
 									Canvas.Top="125" Canvas.Left="115" Height="80" Width="80"/>
 							<Button Classes="Subject" Background="{DynamicResource SecondaryHueMidBrush}" Content="Scan"
 									Canvas.Top="145" Canvas.Left="42" Height="60" Width="60"/>
@@ -204,7 +204,7 @@
 						<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical" Margin="18 4">
 							<HeaderedContentControl Classes="GroupBox">
 								<Grid RowDefinitions="auto, auto" ColumnDefinitions="*, auto">
-									<TextBlock Text="Dobinda Catalin" Margin="2 3"></TextBlock>
+									<TextBlock Text="Onisifor Ghibu" Margin="2 3"></TextBlock>
 									<TextBlock Grid.Column="1" Text="367p" FontFamily="Overpass" FontWeight="ExtraBold"
 											   VerticalAlignment="Bottom" Margin="3 0"/>
 									<WrapPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
@@ -266,7 +266,7 @@
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
-					<TextBlock x:Name="cntQuestion" Classes="Header" Text="Question #3"/>
+					<TextBlock x:Name="cntQuestion" Classes="Header" Text="Question #1"/>
 					<TextBlock x:Name="txQuestion" Grid.Row="1" Foreground="{DynamicResource MaterialDesignBody}" Text="Who started World War 1?" FontSize="24" Margin="18 0"/>
 
 					<TextBox x:Name="tbAnswer" Grid.Row="3" Watermark="answer" Margin="16 10 16 12" AcceptsReturn="True" Height="42" HorizontalAlignment="Stretch">
@@ -355,7 +355,7 @@
 					<TextBox Classes="Header" Text="{Binding txName, Mode=TwoWay}" HorizontalAlignment="Left"/>
 
 					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
-						<TextBox TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent, Mode=TwoWay}" TextWrapping="Wrap"
+						<TextBox TextAlignment="Justify" Watermark="write your research here" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent, Mode=TwoWay}" TextWrapping="Wrap"
 								 FontSize="18" AcceptsReturn="True" VerticalAlignment="Top" Margin="18 0" BorderThickness="0"/>
 					</ScrollViewer>
 					
@@ -403,21 +403,27 @@
 						<TextBlock Classes="Header" Text="User" Grid.Row="0"/>
 
 						<StackPanel Grid.Row="1">
-							<TextBox Margin="18 8" UseFloatingWatermark="False" Watermark="Username">
+							<TextBox Text="User" Margin="18 8" UseFloatingWatermark="False" Watermark="Username">
 								<TextBox.InnerLeftContent>
 									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
 										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="User" Width="20" Height="20"/>
 									</Border>
 								</TextBox.InnerLeftContent>
 							</TextBox>
-							<TextBox Margin="18 8" UseFloatingWatermark="False" Watermark="Password">
+							<TextBox Text="●●●●●●" Margin="18 8" UseFloatingWatermark="False" Watermark="Password">
 								<TextBox.InnerLeftContent>
 									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
 										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Password" Width="20" Height="20"/>
 									</Border>
 								</TextBox.InnerLeftContent>
 							</TextBox>
-							<ComboBox Margin="18 8"/>
+							<TextBox Text="Romania" Margin="18 8" UseFloatingWatermark="False" Watermark="Username">
+								<TextBox.InnerLeftContent>
+									<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
+										<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Globe" Width="20" Height="20"/>
+									</Border>
+								</TextBox.InnerLeftContent>
+							</TextBox>
 						</StackPanel>
 					</Grid>
 
