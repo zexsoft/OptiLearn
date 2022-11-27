@@ -29,10 +29,10 @@ namespace OptiLearn.Views
 {
     public partial class MainWindow : Window
     {
-        Course currentCourse;
-        User currentUser = new User();
+        Course currentCourse { get; set; }
+        User currentUser { get; set; } = new User();
 
-        Course currentResearch;
+        Course currentResearch { get; set; }
         ObservableCollection<string> keyPoints { get; set; } = new();
 
         public int pomodoroCount = 0;
@@ -175,6 +175,7 @@ namespace OptiLearn.Views
         private void btCreateCourse_Click(object sender, RoutedEventArgs e)
         {
             currentCourse = currentResearch.Clone();
+            tCourses.DataContext = currentCourse;
         }
 
         // SETTINGS
