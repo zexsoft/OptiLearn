@@ -86,15 +86,21 @@ namespace OptiLearn.Views
 
             if (File.Exists("Model/bart-summarize.onnx"))        // mBART Summarize
             {
-                try
+                //try
                 {
-                    modelSummarize = new BartSummaryModel("Model/vocab.txt", "Model/bart-summarize.onnx");
+                    BartSummarizeModelConfiguration modelCfgSummary = new BartSummarizeModelConfiguration()
+                    {
+                        VocabularyFile = "Model/vocab.txt",
+                        ModelPath = "Model/bart-summarize.onnx"
+                    };
+
+                    modelSummarize = new BartSummaryModel(modelCfgSummary);
                     modelSummarize.Initialize();
                 }
-                catch
+                /*catch
                 {
                     btSummarize.IsEnabled = false;
-                }
+                }*/
             }
             else
             {
@@ -111,7 +117,7 @@ namespace OptiLearn.Views
                 assistantChat.Add(new Conversation(tbAssistant.Text, true));
                 Dispatcher.UIThread.Post(() => { }, DispatcherPriority.MaxValue);
 
-                assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
+                assistantChat.Add(new Conversation(SummarizeAI(tbAssistant.Text), false));
 
                 lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
                 tbAssistant.Text = string.Empty;
