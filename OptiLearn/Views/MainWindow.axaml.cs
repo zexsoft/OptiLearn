@@ -86,7 +86,7 @@ namespace OptiLearn.Views
 
             if (File.Exists("Model/bart-summarize.onnx"))        // mBART Summarize
             {
-                //try
+                try
                 {
                     BartSummarizeModelConfiguration modelCfgSummary = new BartSummarizeModelConfiguration()
                     {
@@ -97,10 +97,10 @@ namespace OptiLearn.Views
                     modelSummarize = new BartSummaryModel(modelCfgSummary);
                     modelSummarize.Initialize();
                 }
-                /*catch
+                catch
                 {
                     btSummarize.IsEnabled = false;
-                }*/
+                }
             }
             else
             {
@@ -117,7 +117,7 @@ namespace OptiLearn.Views
                 assistantChat.Add(new Conversation(tbAssistant.Text, true));
                 Dispatcher.UIThread.Post(() => { }, DispatcherPriority.MaxValue);
 
-                assistantChat.Add(new Conversation(SummarizeAI(tbAssistant.Text), false));
+                assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
 
                 lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
                 tbAssistant.Text = string.Empty;
@@ -126,12 +126,12 @@ namespace OptiLearn.Views
             }
         }
 
-        private void btSummarize_Click(object sender, KeyEventArgs e)
+        private void btSummarize_Click(object sender, RoutedEventArgs e)
         {
-            assistantChat.Add(new Conversation(tbAssistant.Text, true));
+            assistantChat.Add(new Conversation("summarize " + tbAssistant.Text, true));
             Dispatcher.UIThread.Post(() => { }, DispatcherPriority.MaxValue);
 
-            assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
+            assistantChat.Add(new Conversation(SummarizeAI(tbAssistant.Text), false));
 
             lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
             tbAssistant.Text = string.Empty;
@@ -231,7 +231,7 @@ namespace OptiLearn.Views
         {
             string content = currentCourse.Content;
 
-            try
+            //try
             {
                 if (query != string.Empty)
                 {
@@ -244,12 +244,13 @@ namespace OptiLearn.Views
                 }
                 if (content.Length > 1024) content = content.Remove(1024);
 
-                return content;
+                var (tokens, probability) = modelSummarize.PredictBart(content);
+                return tokens.Aggregate((sum, val) => sum + " " + val);
             }
-            catch
+            /*catch
             {
                 return "can't summarize";
-            }
+            }*/
         }
     }
 

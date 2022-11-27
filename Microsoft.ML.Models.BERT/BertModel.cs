@@ -206,13 +206,43 @@ namespace Microsoft.ML.Models.BERT
             _vocabulary = ReadVocabularyFile(_bartModelConfiguration.VocabularyFile);
             _wordPieceTokenizer = new WordPieceTokenizer(_vocabulary);
 
-            var onnxModelConfigurator = new OnnxModelConfigurator<BartFeature>(_bartModelConfiguration);
+            var onnxModelConfigurator = new OnnxModelConfigurator<BartFeature>(_bartModelConfiguration, new Dictionary<string, int[]>()
+                        {
+                           { "input_ids", new[] { 1, 1024 } },
+                           { "attention_mask", new[] { 1, 1024} },
+                           { "decoder_input_ids", new[] { 1, 1024} },
+                           { "decoder_attention_mask", new[] { 1, 1024} },
+                           { "last_hidden_state", new[] { 1, 1024, 1024} },
+                           { "onnx::MatMul_2374", new[] { 1, 1024, 1024} }
+                        });
+
             _predictionEngine = onnxModelConfigurator.GetMlNetPredictionEngine<BartPredictionResult>();
         }
 
         public (List<string> tokens, float probability) Predict(string context, string question)
         {
             var tokens = _wordPieceTokenizer.Tokenize(question, context);
+            var encodedFeature = EncodeBart(tokens);
+
+            var result = _predictionEngine.Predict(encodedFeature);
+            var contextStart = tokens.FindIndex(o => o.Token == WordPieceTokenizer.DefaultTokens.Separation);
+
+            var (startIndex, endIndex, probability) = GetBestPredictionFromResult(result, contextStart);
+
+            var predictedTokens = encodedFeature.InputIds
+                .Skip(startIndex)
+                .Take(endIndex + 1 - startIndex)
+                .Select(o => _vocabulary[(int)o])
+                .ToList();
+
+            var stichedTokens = StitchSentenceBackTogether(predictedTokens);
+
+            return (stichedTokens, probability);
+        }
+
+        public (List<string> tokens, float probability) PredictBart(string context)
+        {
+            var tokens = _wordPieceTokenizer.Tokenize(context);
             var encodedFeature = EncodeBart(tokens);
 
             var result = _predictionEngine.Predict(encodedFeature);

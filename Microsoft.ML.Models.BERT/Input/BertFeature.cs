@@ -35,19 +35,19 @@ namespace Microsoft.ML.Models.BERT.Input
 
     internal class BartFeature : BFeature
     {
-        [VectorType(1)]
+        [VectorType(1, 1024)]
         [ColumnName("input_ids")]
         public override long[] InputIds { get; set; }
 
-        [VectorType(1, 256)]
+        [VectorType(1, 1024)]
         [ColumnName("attention_mask")]
         public override long[] InputMask { get; set; }
 
-        [VectorType(1, 256)]
+        [VectorType(1, 1024)]
         [ColumnName("decoder_input_ids")]
         public override long[] UniqueIds { get; set; }
 
-        [VectorType(1, 256)]
+        [VectorType(1, 1024)]
         [ColumnName("decoder_attention_mask")]
         public override long[] SegmentIds { get; set; }
     }

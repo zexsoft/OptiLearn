@@ -7,8 +7,6 @@ namespace Microsoft.ML.Models.BERT.Output
         public virtual float[] EndLogits { get; set; }
 
         public virtual float[] StartLogits { get; set; }
-
-        public virtual long[] UniqueIds { get; set; }
     }
 
     internal class BertPredictionResult : BPredictionResult
@@ -23,16 +21,16 @@ namespace Microsoft.ML.Models.BERT.Output
 
         [VectorType(1)]
         [ColumnName("unique_ids:0")]
-        public override long[] UniqueIds { get; set; }
+        public long[] UniqueIds { get; set; }
     }
 
     internal class BartPredictionResult : BPredictionResult
     {
-        [VectorType(1, 1024)]
+        [VectorType(1, 1, 1024)]
         [ColumnName("last_hidden_state")]
         public override float[] EndLogits { get; set; }
 
-        [VectorType(1, 1024)]
+        [VectorType(1, 1, 1024)]
         [ColumnName("onnx::MatMul_2374")]
         public override float[] StartLogits { get; set; }
     }

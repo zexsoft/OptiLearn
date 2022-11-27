@@ -246,7 +246,7 @@
 							</ListBox.ItemTemplate>
 						</ListBox>
 						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12 0" HorizontalAlignment="Stretch">
-							<Button x:Name="btSummarize" Content="summary" ToolTip.Tip="Generate summary of prompt"  Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+							<Button x:Name="btSummarize" ToolTip.Tip="Generate summary of prompt" Content="summary" Click="btSummarize_Click" Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 							<Button x:Name="btNarrator" ToolTip.Tip="Start / Stop naration" Content="narrator" Click="btNarrator_Click" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
 						</StackPanel>
 						<TextBox x:Name="tbAssistant" KeyDown="tbAssistant_KeyDown" Grid.Row="3" Watermark="ask anything" Margin="16 10 16 12" HorizontalAlignment="Stretch">
