@@ -22,6 +22,8 @@ using Avalonia.Interactivity;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Timers;
+using Material.Styles.Themes;
+using Material.Styles.Themes.Base;
 
 namespace OptiLearn.Views
 {
@@ -173,6 +175,27 @@ namespace OptiLearn.Views
         private void btCreateCourse_Click(object sender, RoutedEventArgs e)
         {
             currentCourse = currentResearch.Clone();
+        }
+
+        // SETTINGS
+
+        private static readonly MaterialTheme MaterialThemeStyles =
+            Application.Current!.LocateMaterialTheme<MaterialTheme>();
+
+        private void tgTheme_Checked(object sender, RoutedEventArgs e)
+        {
+            MaterialThemeStyles.BaseTheme = BaseThemeMode.Dark;
+
+            Avalonia.Media.Color bkg = MaterialThemeStyles.BaseTheme.GetBaseTheme().MaterialDesignBackground;
+            Application.Current.Resources["MaterialDesignTBackground"] = new SolidColorBrush(Avalonia.Media.Color.FromArgb(80, bkg.R, bkg.G, bkg.B));
+        }
+
+        private void tgTheme_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MaterialThemeStyles.BaseTheme = BaseThemeMode.Light;
+
+            Avalonia.Media.Color bkg = MaterialThemeStyles.BaseTheme.GetBaseTheme().MaterialDesignBackground;
+            Application.Current.Resources["MaterialDesignTBackground"] = new SolidColorBrush(Avalonia.Media.Color.FromArgb(120, bkg.R, bkg.G, bkg.B));
         }
 
         // AI MODELS

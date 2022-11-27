@@ -148,7 +148,7 @@
 			<Setter Property="MinWidth" Value="48"/>
 		</Style>
 		<Style Selector="TabItem:selected">
-			<Setter Property="Background" Value="#7000005F"/>
+			<Setter Property="Background" Value="#9000004F"/>
 		</Style>
 		<Style Selector="TabControl /template/ Panel">
 			<Setter Property="Background" Value="{DynamicResource MaterialDesignBackground}"/>
@@ -456,7 +456,8 @@
 					
 					<Grid RowDefinitions="auto,auto,auto,*" >
 						<TextBlock Classes="Header" Text="Settings" Grid.Row="0"/>
-						<ToggleSwitch Margin="18" Content="  Switch Theme" Grid.Row="1" ToolTip.Tip="Dark / Light theme"/>
+						<ToggleSwitch x:Name="tgTheme" Margin="18" IsChecked="True" Content="   Switch Theme" Checked="tgTheme_Checked" Unchecked="tgTheme_Unchecked"
+									  Grid.Row="1" ToolTip.Tip="Dark / Light theme"/>
 						
 						<TextBlock Classes="Header" HorizontalAlignment="Left" Text="Technologies" Grid.Row="2"/>
 						<TextBlock TextAlignment="Justify" Foreground="{DynamicResource MaterialDesignBody}"
