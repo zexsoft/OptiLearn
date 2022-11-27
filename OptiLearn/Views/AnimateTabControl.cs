@@ -7,9 +7,9 @@ using System;
 namespace OptiLearn
 {
     [PseudoClasses(":normal")]
-    public class AnimateTabControl : TabControl//, IStyleable
+    public class AnimateTabControl : TabControl, IStyleable
     {
-        //Type IStyleable.StyleKey => typeof(TabControl);
+        Type IStyleable.StyleKey => typeof(TabControl);
 
         public AnimateTabControl()
         {
@@ -17,9 +17,9 @@ namespace OptiLearn
             this.GetObservable(SelectedContentProperty).Subscribe(OnContentChanged);
         }
 
-        private void OnContentChanged(object obj)
+        private void OnContentChanged(object? obj)
         {
-            if (AnimateOnChange)
+            if (AnimateOnChange && obj != null)
             {
                 PseudoClasses.Remove(":normal");
                 PseudoClasses.Add(":normal");

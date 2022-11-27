@@ -60,11 +60,9 @@ namespace Microsoft.ML.Models.BERT.Tokenizers
 
             while (!string.IsNullOrEmpty(remaining) && remaining.Length > 2)
             {
-                var prefix = _vocabulary.Where(remaining.StartsWith)
-                    .OrderByDescending(o => o.Count())
-                    .FirstOrDefault();
+                var prefix = _vocabulary.Where(remaining.StartsWith).MaxBy(x => x.Length);
 
-                if (prefix == null)
+                if (prefix == null || prefix == string.Empty)
                 {
                     tokens.Add((DefaultTokens.Unknown, _vocabulary.IndexOf(DefaultTokens.Unknown)));
 
@@ -90,6 +88,24 @@ namespace Microsoft.ML.Models.BERT.Tokenizers
             return text.Split(new string[] { " ", "   ", "\r\n" }, StringSplitOptions.None)
                 .SelectMany(o => o.SplitAndKeep(".,;:\\/?!#$%()=+-*\"'–_`<>&^@{}[]|~'".ToArray()))
                 .Select(o => o.ToLower());
+        }
+    }
+
+    public static class LinqExtensions
+    {
+        public static TSource MaxBy<TSource, TResult>(this IEnumerable<TSource> collection, Func<TSource, TResult> func)
+        {
+            var comparer = Comparer<TSource>.Default;
+
+            TSource maxItem = default;
+
+            foreach (TSource item in collection)
+            {
+                if (comparer.Compare(item, maxItem) > 0)
+                    maxItem = item;
+            }
+
+            return maxItem;
         }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
         xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+        xmlns:opti="clr-namespace:OptiLearn"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		x:Class="OptiLearn.Views.MainWindow" MinWidth="640" MinHeight="475"
@@ -134,7 +135,7 @@
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}"/>
 			<Setter Property="BorderThickness" Value="0"/>
 			<Style.Animations>
-				<Animation Duration="0:0:1.5" Delay="1.25" Easing="ExponentialEaseInOut">
+				<Animation Duration="0:0:1.5" Delay="1.25" Easing="CubicEaseOut">
 					<KeyFrame Cue="0%">
 						<Setter Property="Opacity" Value="0.0"/>
 					</KeyFrame>
@@ -159,12 +160,26 @@
 		<Style Selector="Button.material-calendar-header-button, Button.material-calendar-nav-button">
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"></Setter>
 		</Style>
+		<Style Selector="TabControl:normal /template/ ContentPresenter">
+			<Style.Animations>
+				<Animation Duration="0:0:0.65" FillMode="Both" Easing="CubicEaseOut">
+					<KeyFrame Cue="0%">
+						<Setter Property="TranslateTransform.X" Value="75"/>
+						<Setter Property="Opacity" Value="0"/>
+					</KeyFrame>
+					<KeyFrame Cue="100%">
+						<Setter Property="TranslateTransform.X" Value="0"/>
+						<Setter Property="Opacity" Value="1"/>
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
 	</Window.Styles>
 
-	<DockPanel Background="#701D1D1D" Margin="0 0 0 0">
-		<TabControl TabStripPlacement="Left" SelectedIndex="0" VerticalAlignment="Stretch" IsHitTestVisible="True">
+	<DockPanel Background="{DynamicResource MaterialDesignTBackground}" Margin="0 0 0 0">
+		<opti:AnimateTabControl TabStripPlacement="Left" SelectedIndex="0" VerticalAlignment="Stretch" IsHitTestVisible="True">
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Home, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tMain" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *">
+				<Grid x:Name="tMain" RowDefinitions="auto, auto, *">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="auto"></ColumnDefinition>
@@ -219,7 +234,7 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=BookOpenPageVariantOutline, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tCourses" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, *">
+				<Grid x:Name="tCourses" RowDefinitions="auto, *">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -261,7 +276,7 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=TestTube, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tExam" Background="{DynamicResource MaterialDesignTBackground}" RowDefinitions="auto, auto, *, auto">
+				<Grid x:Name="tExam" RowDefinitions="auto, auto, *, auto">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -304,7 +319,7 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=CalendarText, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tPlanning" Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tPlanning">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -347,17 +362,17 @@
 			</TabItem>
 			
 			<TabItem Header="{avalonia:MaterialIconExt Kind=NotebookOutline, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tResearch" RowDefinitions="auto, *" Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tResearch" RowDefinitions="auto, *">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 					<TextBox Classes="Header" Text="{Binding txName, Mode=TwoWay}" HorizontalAlignment="Left"/>
 
-					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
-						<TextBox TextAlignment="Justify" Watermark="write your research here" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent, Mode=TwoWay}" TextWrapping="Wrap"
-								 FontSize="18" AcceptsReturn="True" VerticalAlignment="Top" Margin="18 0" BorderThickness="0"/>
-					</ScrollViewer>
+					<Grid x:Name="pText" Grid.Row="1">
+						<TextBox ScrollViewer.VerticalScrollBarVisibility="Auto" TextAlignment="Justify" Watermark="write your course here" Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding txContent, Mode=TwoWay}"
+								 FontSize="18" CornerRadius="0" AcceptsReturn="True" VerticalAlignment="Top" Margin="18 0" BorderThickness="0" TextWrapping="Wrap"/>
+					</Grid>
 					
 					<Grid Classes="Sidebar" Grid.RowSpan="2" Grid.Column="1" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto">
 						<TextBlock Classes="Header" Text="Key points"/>
@@ -393,7 +408,7 @@
 			<!--Settings separate, will contain theme options, copyright-->
 
 			<TabItem Header="{avalonia:MaterialIconExt Kind=User, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tUser" Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tUser">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -452,7 +467,7 @@
 			</TabItem>
 
 			<TabItem Header="{avalonia:MaterialIconExt Kind=Settings, Size=28}" IsHitTestVisible="True">
-				<Grid x:Name="tSettings" Background="{DynamicResource MaterialDesignTBackground}">
+				<Grid x:Name="tSettings">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
 						<ColumnDefinition Width="*" MaxWidth="325"></ColumnDefinition>
@@ -482,6 +497,6 @@
 					</Grid>
 				</Grid>
 			</TabItem>
-	    </TabControl>
+	    </opti:AnimateTabControl>
 	</DockPanel>
 </Window>

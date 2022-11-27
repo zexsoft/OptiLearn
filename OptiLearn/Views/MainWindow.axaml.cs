@@ -1,29 +1,26 @@
 using Avalonia;
-using Avalonia.Controls;
+using Avalonia.Media;
 using Avalonia.Input;
 using Avalonia.Layout;
-using Avalonia.Media;
+using Avalonia.Controls;
 using Avalonia.Threading;
-using Material.Styles.Themes;
+using Avalonia.Interactivity;
+
 using Microsoft.ML.Models.BERT;
 using OptiLearn.ViewModels;
+using Zexsoft;
+
 using ReactiveUI;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
+using Material.Styles.Themes.Base;
+using Material.Styles.Themes;
+
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-using Zexsoft;
-using System.Speech.Synthesis;
-using System;
-using System.Globalization;
-using Avalonia.Interactivity;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Timers;
-using Material.Styles.Themes;
-using Material.Styles.Themes.Base;
+using System.Speech.Synthesis;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace OptiLearn.Views
 {
@@ -194,7 +191,7 @@ namespace OptiLearn.Views
             MaterialThemeStyles.BaseTheme = BaseThemeMode.Dark;
 
             Avalonia.Media.Color bkg = MaterialThemeStyles.BaseTheme.GetBaseTheme().MaterialDesignBackground;
-            Application.Current.Resources["MaterialDesignTBackground"] = new SolidColorBrush(Avalonia.Media.Color.FromArgb(80, bkg.R, bkg.G, bkg.B));
+            Application.Current.Resources["MaterialDesignTBackground"] = new SolidColorBrush(Avalonia.Media.Color.FromArgb(149, bkg.R, bkg.G, bkg.B));
         }
 
         private void tgTheme_Unchecked(object sender, RoutedEventArgs e)
@@ -202,7 +199,7 @@ namespace OptiLearn.Views
             MaterialThemeStyles.BaseTheme = BaseThemeMode.Light;
 
             Avalonia.Media.Color bkg = MaterialThemeStyles.BaseTheme.GetBaseTheme().MaterialDesignBackground;
-            Application.Current.Resources["MaterialDesignTBackground"] = new SolidColorBrush(Avalonia.Media.Color.FromArgb(120, bkg.R, bkg.G, bkg.B));
+            Application.Current.Resources["MaterialDesignTBackground"] = new SolidColorBrush(Avalonia.Media.Color.FromArgb(149, bkg.R, bkg.G, bkg.B));
         }
 
         // AI MODELS
@@ -231,7 +228,7 @@ namespace OptiLearn.Views
         {
             string content = currentCourse.Content;
 
-            //try
+            try
             {
                 if (query != string.Empty)
                 {
@@ -247,10 +244,10 @@ namespace OptiLearn.Views
                 var (tokens, probability) = modelSummarize.PredictBart(content);
                 return tokens.Aggregate((sum, val) => sum + " " + val);
             }
-            /*catch
+            catch
             {
                 return "can't summarize";
-            }*/
+            }
         }
     }
 
