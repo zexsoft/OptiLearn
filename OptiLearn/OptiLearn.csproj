@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
@@ -28,6 +28,7 @@
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview4" />
     <PackageReference Include="Material.Avalonia" Version="3.0.0-avalonia11-preview2.123-nightly" />
     <PackageReference Include="Material.Icons.Avalonia" Version="1.2.0" />
+    <PackageReference Include="Material.WindowStyle" Version="0.11.0.24-alpha" />
     <PackageReference Include="System.Speech" Version="7.0.0" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.2" />
     <PackageReference Include="Zexsoft.QSearch" Version="2.0.0" />
