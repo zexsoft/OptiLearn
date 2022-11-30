@@ -70,6 +70,12 @@
 			<Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
 			<Setter Property="ToolTip.ShowDelay" Value="850"/>
 		</Style>
+		<Style Selector="WrapPanel > Button > TextBlock">
+			<Setter Property="FontSize" Value="12"/>
+		</Style>
+		<Style Selector="WrapPanel > Button">
+			<Setter Property="Padding" Value="7 0"/>
+		</Style>
 		<Style Selector="ComboBox">
 			<Setter Property="BorderThickness" Value="1"/>
 			<Setter Property="CornerRadius" Value="16"/>
@@ -160,6 +166,12 @@
 		</Style>
 		<Style Selector="Button.material-calendar-header-button, Button.material-calendar-nav-button">
 			<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"></Setter>
+			<Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}"></Setter>
+			<Setter Property="BorderBrush" Value="{DynamicResource SecondaryHueMidBrush}"></Setter>
+		</Style>
+		<Style Selector="Grid.material-calendar-view TextBlock">
+			<Setter Property="FontFamily" Value="Overpass"></Setter>
+			<Setter Property="Margin" Value="0 3 0 0"></Setter>
 		</Style>
 		<Style Selector="TabControl:normal /template/ ContentPresenter">
 			<Style.Animations>
