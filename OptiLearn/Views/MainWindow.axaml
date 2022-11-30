@@ -177,7 +177,7 @@
 			<Style.Animations>
 				<Animation Duration="0:0:0.65" FillMode="Forward" Easing="CubicEaseOut">
 					<KeyFrame Cue="0%">
-						<Setter Property="TranslateTransform.X" Value="75"/>
+						<Setter Property="TranslateTransform.X" Value="45"/>
 						<Setter Property="Opacity" Value="0"/>
 					</KeyFrame>
 					<KeyFrame Cue="100%">
@@ -266,17 +266,17 @@
 						  RowDefinitions="auto, *, auto, auto">
 						<TextBlock Classes="Header" Text="Assistant"/>
 
-						<ListBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4"
+						<ItemsControl Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 4"
 								 x:Name="lbChat" Padding="0">
-							<ListBox.ItemTemplate>
+							<ItemsControl.ItemTemplate>
 								<DataTemplate>
 									<Grid ColumnDefinitions="auto, *" HorizontalAlignment="Stretch">
 										<Border Background="{Binding SideColor}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-										<TextBlock Grid.Column="1" Foreground="{Binding MaterialDesignBody}" TextWrapping="Wrap" Text="{Binding txText}" Margin="8 8 8 7" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+										<TextBlock Grid.Column="1" Foreground="{Binding SideColor}" TextWrapping="Wrap" Text="{Binding txText}" Margin="8 8 8 7" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
 									</Grid>
 								</DataTemplate>
-							</ListBox.ItemTemplate>
-						</ListBox>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 						<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12 0" HorizontalAlignment="Stretch">
 							<Button x:Name="btSummarize" ToolTip.Tip="Generate summary of prompt" Content="summary" Click="btSummarize_Click" Margin="4 0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 							<Button x:Name="btNarrator" ToolTip.Tip="Start / Stop naration" Content="narrator" Click="btNarrator_Click" Margin="4 0" BorderBrush="{DynamicResource SecondaryHueMidBrush}" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
@@ -352,17 +352,17 @@
 					<Grid Classes="Sidebar" Grid.Column="1" ColumnDefinitions="*, auto" RowDefinitions="auto, *, auto, auto, auto, auto">
 						<TextBlock Classes="Header" Text="Schedule"/>
 						<Button Classes="Link" Grid.Column="1" ToolTip.Tip="Add a schedule" Content="{avalonia:MaterialIconExt Kind=Plus}"/>
-						<ListBox Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4">
-							<ListBox.ItemTemplate>
+						<ItemsControl Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 4">
+							<ItemsControl.ItemTemplate>
 								<DataTemplate>
 									<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5">
 										<Border Background="{DynamicResource SecondaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
 										<TextBlock Foreground="{DynamicResource SecondaryHueMidBrush}" Text="due" Margin="8 0 5 0" VerticalAlignment="Center"/>
-										<TextBlock Text="Ancient Greece" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+										<TextBlock Text="{Binding txCourse}" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
 									</StackPanel>
 								</DataTemplate>
-							</ListBox.ItemTemplate>
-						</ListBox>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 
 						<TextBlock Grid.ColumnSpan="2" Classes="Header" Text="Sessions" Grid.Row="2"/>
 
@@ -394,12 +394,12 @@
 					<Grid Classes="Sidebar" Grid.RowSpan="2" Grid.Column="1" RowDefinitions="auto, auto, *" ColumnDefinitions="*, auto">
 						<TextBlock Classes="Header" Text="Key points"/>
 						<Button x:Name="btAddKey" Classes="Link" Click="btAddKey_Click" Grid.Column="1" ToolTip.Tip="Add a new Key Point " Content="{avalonia:MaterialIconExt Kind=Plus}"/>
-						<ListBox x:Name="lbKeyPoints" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="-8 4">
-							<ListBox.ItemTemplate>
+						<ItemsControl x:Name="lbKeyPoints" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 4">
+							<ItemsControl.ItemTemplate>
 								<DataTemplate>
 									<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
 										<Border Background="{DynamicResource TertiaryHueMidBrush}" Height="20" Width="7" VerticalAlignment="Center" CornerRadius="0 3 3 0"/>
-										<TextBox Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="{Binding}">
+										<TextBox Foreground="{DynamicResource MaterialDesignBody}" HorizontalAlignment="Stretch" Margin="8 6" TextWrapping="Wrap" Text="{Binding}" Watermark="Point">
 											<TextBox.InnerLeftContent>
 												<Border Height="{Binding $parent[TextBox].Height}" Width="{Binding $self.Bounds.Height}">
 													<avalonia:MaterialIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Idea" Width="20" Height="20"/>
@@ -408,8 +408,8 @@
 										</TextBox>
 									</StackPanel>
 								</DataTemplate>
-							</ListBox.ItemTemplate>
-						</ListBox>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 
 						<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom" Margin="12 16">
 							<Button Content="research" HorizontalAlignment="Left" Foreground="{DynamicResource PrimaryHueMidBrush}"

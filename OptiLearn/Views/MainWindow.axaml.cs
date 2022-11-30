@@ -116,7 +116,7 @@ namespace OptiLearn.Views
 
                 assistantChat.Add(new Conversation(QuestionAI(tbAssistant.Text), false));
 
-                lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
+                //lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
                 tbAssistant.Text = string.Empty;
 
                 e.Handled = true;
@@ -130,7 +130,7 @@ namespace OptiLearn.Views
 
             assistantChat.Add(new Conversation(SummarizeAI(tbAssistant.Text), false));
 
-            lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
+            //lbChat.ScrollIntoView(assistantChat[assistantChat.Count - 1]);
             tbAssistant.Text = string.Empty;
         }
 
@@ -172,7 +172,7 @@ namespace OptiLearn.Views
 
         private void btAddKey_Click(object sender, RoutedEventArgs e)
         {
-            keyPoints.Add("Point");
+            keyPoints.Add(string.Empty);
         }
 
         private void btCreateCourse_Click(object sender, RoutedEventArgs e)
