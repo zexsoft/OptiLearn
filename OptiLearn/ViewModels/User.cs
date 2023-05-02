@@ -13,11 +13,11 @@ namespace OptiLearn.ViewModels
     public class User : ViewModelBase
     {
         public int Id = 0;
-        public string Name = "User";
+        public string Name = "Șerban";
         public string PasswordHash = "0";
 
         public CultureInfo Region = CultureInfo.CurrentCulture;
-        public int Points = 0;
+        public int Points = 932;
 
         public ObservableCollection<OngoingCourse> Courses { get; set; } = new();
         public ObservableCollection<int> Friends { get; set; } = new();

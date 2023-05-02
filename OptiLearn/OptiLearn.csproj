@@ -6,11 +6,15 @@
     <!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
     <TrimMode>copyused</TrimMode>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationIcon>Assets\optilearn.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
     <None Remove=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\optilearn.ico" />
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.
@@ -20,18 +24,18 @@
     <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview4" />
+    <PackageReference Include="Avalonia" Version="11.0.0-preview7" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview7" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview4" />
-    <PackageReference Include="Material.Avalonia" Version="3.0.0-avalonia11-preview2.123-nightly" />
-    <PackageReference Include="Material.Icons.Avalonia" Version="1.2.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview7" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview7" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview7" />
+    <PackageReference Include="Material.Avalonia" Version="3.0.0-avalonia11-preview4.159-nightly" />
+    <PackageReference Include="Material.Icons.Avalonia" Version="2.0.0-preview3" />
     <PackageReference Include="Material.WindowStyle" Version="0.11.0.24-alpha" />
     <PackageReference Include="System.Speech" Version="7.0.0" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.2" />
-    <PackageReference Include="Zexsoft.QSearch" Version="2.0.0" />
+    <PackageReference Include="Zexsoft.QSearch" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.ML.Models.BERT\Microsoft.ML.Models.BERT.csproj" />

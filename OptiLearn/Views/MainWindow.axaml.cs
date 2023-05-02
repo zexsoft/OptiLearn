@@ -51,9 +51,9 @@ namespace OptiLearn.Views
             // DataContext
             tCourses.DataContext = currentCourse;
             tMain.DataContext = currentUser;
-            lbChat.Items = assistantChat;
+            lbChat.ItemsSource = assistantChat;
             tResearch.DataContext = currentResearch;
-            lbKeyPoints.Items = keyPoints;
+            lbKeyPoints.ItemsSource = keyPoints;
             
             // Models
             if (File.Exists("Model/bert-question.onnx"))        // BERT Question
@@ -96,7 +96,7 @@ namespace OptiLearn.Views
                 }
                 catch
                 {
-                    btSummarize.IsEnabled = false;
+                    //btSummarize.IsEnabled = false; [TEMP]
                 }
             }
             else
