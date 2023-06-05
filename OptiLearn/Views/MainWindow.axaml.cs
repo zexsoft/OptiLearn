@@ -21,6 +21,7 @@ using System.Speech.Synthesis;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using System;
 
 namespace OptiLearn.Views
 {
@@ -103,6 +104,13 @@ namespace OptiLearn.Views
             {
                 btSummarize.IsEnabled = false;
             }
+        }
+
+        // LANDING PAGE
+
+        private void History_Click(object sender, RoutedEventArgs e)
+        {
+            TabMain.SelectedItem = TabCourses;
         }
 
         // COURSES  
